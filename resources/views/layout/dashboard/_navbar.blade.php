@@ -165,10 +165,9 @@
                 <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
                 <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
                 <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
-              </div>
+                <a class="dropdown-item" data-effect="effect-scale"
+                data-toggle="modal" href="#logout" title="Logout"><i class="ft-power"></i>{{ __('auth.logout') }}</a>
             </li>
-
 
 
 
@@ -346,3 +345,36 @@
       </div>
     </div>
   </nav>
+  <div class="modal " id="logout">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-content-demo">
+
+            <div class="modal-header">
+                <h6 class="modal-title">{{ __('auth.logout') }}</h6>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <form action="{{ route('dashboard.logout') }}" method="POST">
+                @csrf
+                @method('delete')
+
+                <div class="modal-body">
+                    <p>{{ __('auth.Do You want Logout') }}</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        {{ __('auth.close') }}
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        {{ __('auth.logout') }}
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
