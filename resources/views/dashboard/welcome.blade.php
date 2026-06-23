@@ -4,4 +4,5 @@ test
 @endsection
 
 @section('body')
+
 @endsection

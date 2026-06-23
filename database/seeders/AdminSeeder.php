@@ -15,11 +15,15 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create([
-    'role' => 'Super Admin',
- 'permession' => json_encode(['all'])]);
+
         Admin::create([
             'name'=>'admin',
+            'email'=>'admin@gmail.com',
+            'password'=>Hash::make('password'),
+            'role_id'=>1
+        ]);
+        Admin::create([
+            'name'=>'belal',
             'email'=>'belalhesham619@gmail.com',
             'password'=>Hash::make('password'),
             'role_id'=>1

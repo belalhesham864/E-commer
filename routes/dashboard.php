@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetPasswordController;
+use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Notifications\Dashboard\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,10 @@ Route::group(
 			##############################welcome Routes#######################
 
 			Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
+
+			##############################Roles Routes#######################
+
+			Route::resource('roles',RoleController::class)->middleware('can:roles');
 		});
 	}
 );
