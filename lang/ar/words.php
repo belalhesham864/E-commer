@@ -20,6 +20,7 @@ return[
     'delete'=>'حذف',
     'Home'=>'الرئيسيه',
     'deleteRole'=>'لا يمكنك حذف الصلاحيه لانها مرتبطه ب ادمن',
-    'deleteRolesuccess'=>'تم حذف الصلاحيه بنجاح'
+    'deleteRolesuccess'=>'تم حذف الصلاحيه بنجاح',
+    'admins'=>'الادمن'
 ];
 ?>

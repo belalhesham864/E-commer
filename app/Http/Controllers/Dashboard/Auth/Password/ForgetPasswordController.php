@@ -57,6 +57,7 @@ class ForgetPasswordController extends Controller
         }
 
         flash()->success(__('auth.success otp'));
+        session(['reset_email'=>$data['email'],'otp_verified'=>true]);
         return redirect()->to(route('dashboard.password.showform', [
             'email' => $data['email']
         ]));

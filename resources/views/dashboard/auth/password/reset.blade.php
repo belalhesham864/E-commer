@@ -25,7 +25,7 @@
                     <form action="{{ route('dashboard.password.resetPassword') }}" method="post" class="form-horizontal" action="login-simple.html" novalidate>
                         @csrf
                       <fieldset class="form-group position-relative has-icon-left">
-                        <input type="hidden" name="email" value="{{ $email }}" id="">
+                        {{-- <input type="hidden" name="email" value="{{ $email }}" id=""> --}}
                         <input type="password"  name="password" class="form-control form-control-lg input-lg" id="user-password"
                         placeholder="{{ __('auth.password') }}" required>
                         @error('password')

@@ -20,7 +20,8 @@ return[
     'delete'=>'Delete',
     'Home'=>'Home',
     'deleteRole'=>'You cannot delete the permission because it is linked to the admin.',
-    'deleteRolesuccess'=>'Role Deleted Successfuly'
+    'deleteRolesuccess'=>'Role Deleted Successfuly',
+    'admins'=>'admins',
     
 ];
 ?>

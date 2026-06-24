@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Auth;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ResetPasswordRequest extends FormRequest
+class AdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +23,13 @@ class ResetPasswordRequest extends FormRequest
      */
     public function rules(): array
     {
+     
         return [
-            // 'email'=>'required|email',
-            'password'=>"required|confirmed|min:8",
+            'name'=>'required|string|between:5,20',
+            'email'=>['required','email',Rule::unique('admins','email')->ignore($this->id)],
+            'role_id'=>"required|exists:roles,id",
+            'password'=>'required|min:8',
+            'status'=>'required|boolean',
         ];
     }
 }

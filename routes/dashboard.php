@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetPasswordController;
@@ -46,6 +47,13 @@ Route::group(
 			##############################Roles Routes#######################
 
 			Route::resource('roles',RoleController::class)->middleware('can:roles');
+			##############################Roles Routes#######################
+      Route::middleware('can:admins')->group(function(){
+		  
+		  Route::resource('admins',AdminController::class);
+		  Route::get('admins/{id}/status', [AdminController::class,'changeStatus'])->name('admins.status');
+		  });
+
 		});
 	}
 );
