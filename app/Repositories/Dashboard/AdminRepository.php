@@ -12,7 +12,7 @@ class AdminRepository
    */
   public function getAdmins()
   {
-    return Admin::select('id', 'name', 'email', 'created_at', 'role_id')->paginate(6);
+    return Admin::select('id', 'name', 'email','status', 'created_at', 'role_id')->paginate(1);
   }
   public function getAdmin($id)
   {
@@ -25,6 +25,7 @@ class AdminRepository
     $admin->email = $request->email;
     $admin->password = $request->password;
     $admin->status = $request->status;
+    $admin->role_id = $request->role_id;
     $admin->save();
     return $admin;
   }
@@ -32,8 +33,8 @@ class AdminRepository
   {
     $admin->name = $request->name;
     $admin->email = $request->email;
-    $admin->password = $request->password;
     $admin->status = $request->status;
+    $admin->role_id = $request->role_id;
     $admin->save();
     return $admin;
   }
@@ -46,4 +47,9 @@ class AdminRepository
     $admin->update(['status' => $status]);
     return $admin;
   }
+  public function changePassword($request,$admin){
+    $admin->update(['password'=>$request['password']]);
+     return $admin;
+  }
+  
 }

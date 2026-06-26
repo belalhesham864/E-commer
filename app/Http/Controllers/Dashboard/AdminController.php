@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AdminRequest;
+use App\Http\Requests\Dashboard\ChangePasswordRequest;
 use App\Models\Admin;
 use App\Services\Dashboard\AdminService;
 use App\Services\Dashboard\Role\RoleService;
 use Illuminate\Http\Request;
+
+use function Flasher\Prime\flash;
 
 class AdminController extends Controller
 {
@@ -18,6 +21,9 @@ class AdminController extends Controller
     public function index()
     {
         $admins = $this->adminService->getAdmins();
+         if (request()->ajax()) {
+        return view('dashboard.admins.paginate_ajax', compact('admins'));
+    }
         return view('dashboard.admins.index', compact('admins'));
     }
 
@@ -55,7 +61,7 @@ class AdminController extends Controller
             flash()->error('Admin Not Found');
             return redirect()->back();
         }
-        return view('dashboard.roles.show',compact('admin'));
+        return view('dashboard.admins.show',compact('admin'));
     }
 
     /**
@@ -76,7 +82,7 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      */
     public function update(AdminRequest $request, string $id)
-    {
+    { 
         $request->validated();
         $admin = $this->adminService->upadteAdmin($request,$id);
         if (!$admin) {
@@ -100,8 +106,28 @@ class AdminController extends Controller
          flash()->success('Admin Deleted Sucessfuly');
         return redirect()->route('dashboard.admins.index');
     }
-    public function changeStatus($id,$request){
-        $status=$request->status;
-        $this->adminService->changeStatus($id,$status);
+    public function changeStatus($id){
+       $status= $this->adminService->changeStatus($id);
+       if(!$status){
+        flash()->error('Please Try Again Latter');
+               return redirect()->back();
+       }
+       flash()->success('status Updated Successfuly');
+       return redirect()->back();
+    }
+    public function search(Request $request){
+        $keyword=$request->search;
+        $admins=Admin::where('name','LIKE','%'.$keyword.'%')->orWhere('email','LIKE','%'.$keyword.'%')->paginate(10);
+        return view('dashboard.admins.search-ajax',compact('admins'));
+    }
+    public function changePassword(ChangePasswordRequest $request,$id){
+       $updatePassword= $this->adminService->changePassword($id,$request->validated());
+       if(!$updatePassword){
+  return back()->withErrors([
+        'oldPassword' => 'Current password is incorrect.'
+    ]);   
+       }
+       flash()->success('Password Updated Successfuly');
+       return redirect()->route('dashboard.admins.index');
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class AdminRequest extends FormRequest
 {
@@ -23,10 +22,17 @@ class AdminRequest extends FormRequest
      */
     public function rules(): array
     {
-     
+          if(request()->isMethod('PUT')){
+              return [
+            'name'=>'required|string|between:5,20',
+            'email'=>'required|email|unique:admins,email,'. request()->route('admin'),
+            'role_id'=>"required|exists:roles,id",
+            'status'=>'required|boolean',
+        ];
+        }
         return [
             'name'=>'required|string|between:5,20',
-            'email'=>['required','email',Rule::unique('admins','email')->ignore($this->id)],
+            'email'=>'required|email|unique:admins,email',
             'role_id'=>"required|exists:roles,id",
             'password'=>'required|min:8',
             'status'=>'required|boolean',

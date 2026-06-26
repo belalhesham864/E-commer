@@ -52,6 +52,8 @@ Route::group(
 		  
 		  Route::resource('admins',AdminController::class);
 		  Route::get('admins/{id}/status', [AdminController::class,'changeStatus'])->name('admins.status');
+		  Route::post('admins/{id}/password', [AdminController::class,'changePassword'])->name('admins.password');
+		  Route::post('admins/search', [AdminController::class,'search'])->name('admins.search');
 		  });
 
 		});

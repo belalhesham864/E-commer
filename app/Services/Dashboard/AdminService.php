@@ -3,6 +3,7 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\AdminRepository;
+use Illuminate\Support\Facades\Hash;
 
 class AdminService
 {
@@ -45,11 +46,22 @@ class AdminService
         }
         return $this->adminRepository->deleteAdmin($admin);
     }
-    public function changeStatus($id,$status){
+    public function changeStatus($id){
              $admin=self::getAdmin($id);
-                   if(!$admin){
+           if(!$admin){
            return false;
         }
+      $admin->status= 1 ? $status=0 : $status=1;
         return $this->adminRepository->changeStatus($admin,$status);
+    }
+    public function changePassword($id,$request){
+          $admin=self::getAdmin($id);
+           if(!$admin){
+           return false;
+        }
+        if(!Hash::check($request['oldPassword'],$admin->password)){
+            return false;
+        } 
+        return $this->adminRepository->changePassword($request,$admin);
     }
 } 
