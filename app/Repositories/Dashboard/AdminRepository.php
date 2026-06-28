@@ -12,7 +12,7 @@ class AdminRepository
    */
   public function getAdmins()
   {
-    return Admin::select('id', 'name', 'email','status', 'created_at', 'role_id')->paginate(1);
+    return Admin::select('id', 'name', 'email','status', 'created_at', 'role_id')->paginate(5);
   }
   public function getAdmin($id)
   {

@@ -3,12 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+use Spatie\Translatable\Translatable;
 
 class Country extends Model
 {
+    use HasTranslations;
+    public array $translatable=['name'];
     public $timestamps = false;
         protected $fillable = [
         'name',
-       
+        'phone_code',
     ];
+
 }
