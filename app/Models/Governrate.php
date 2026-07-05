@@ -13,5 +13,10 @@ class Governrate extends Model
         
 
         public $timestamps = false;
-
+   public function country(){
+    return $this->belongsTo(Country::class,'country_id');
+   }
+        public function cities(){
+        return $this->hasMany(City::class,'governrate_id');
+     }
 }

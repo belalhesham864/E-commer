@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Auth\Password\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetPasswordController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WelcomeController;
+use App\Http\Controllers\Dashboard\WorldController;
 use App\Notifications\Dashboard\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -55,6 +56,11 @@ Route::group(
 		  Route::post('admins/{id}/password', [AdminController::class,'changePassword'])->name('admins.password');
 		  Route::post('admins/search', [AdminController::class,'search'])->name('admins.search');
 		  });
+		    Route::controller(WorldController::class)->name('world.')->group(function(){
+
+				Route::get('countries','getAllCountries')->name('countries');
+				Route::get('change-Status/{id}','changStatus')->name('status');
+				});
 
 		});
 	}

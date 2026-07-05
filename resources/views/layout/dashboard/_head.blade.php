@@ -52,6 +52,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('asset/dashboard') }}/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('asset/dashboard') }}/css/pages/timeline.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('asset/dashboard') }}/css/pages/dashboard-ecommerce.css">
+  
   <!-- END Page Level CSS-->
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">

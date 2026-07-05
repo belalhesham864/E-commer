@@ -12,5 +12,7 @@ class City extends Model
         public $fillable = ['name','governrate_id'];
 
         public $timestamps = false;
-
+     public function governrate(){
+    return $this->belongsTo(Governrate::class,'governrate_id');
+   }
 }

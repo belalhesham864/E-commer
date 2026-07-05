@@ -60,6 +60,12 @@
 
           </ul>
         </li>
+        <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.navbars.main">World</span></a>
+          <ul class="menu-content">
+                        <li><a class="menu-item"  href="{{ route('dashboard.world.countries') }}" data-i18n="nav.navbars.nav_light">Countries</a>
+
+          </ul>
+        </li>
         <li class=" nav-item"><a href="#"><i class="la la-arrows-v"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">Vertical Nav</span></a>
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.vertical_nav.vertical_navigation_types.main">Navigation Types</a>

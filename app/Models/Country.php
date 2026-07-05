@@ -16,4 +16,8 @@ class Country extends Model
         'phone_code',
     ];
 
+     public function governrates(){
+        return $this->hasMany(Governrate::class,'country_id');
+     }
+
 }

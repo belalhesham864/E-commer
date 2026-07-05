@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('governrates', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            
             $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
         });
     }
