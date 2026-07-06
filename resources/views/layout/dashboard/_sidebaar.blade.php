@@ -62,7 +62,7 @@
         </li>
         <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.navbars.main">World</span></a>
           <ul class="menu-content">
-                        <li><a class="menu-item"  href="{{ route('dashboard.world.countries') }}" data-i18n="nav.navbars.nav_light">Countries</a>
+                        <li><a class="menu-item"  href="{{ route('dashboard.world.countries.index') }}" data-i18n="nav.navbars.nav_light">Countries</a>
 
           </ul>
         </li>

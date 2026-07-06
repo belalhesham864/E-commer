@@ -5,6 +5,7 @@ namespace App\Repositories\Dashboard;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Governrate;
+use App\Models\ShippingGovernrate;
 
 class WorldRepository
 {
@@ -18,10 +19,11 @@ class WorldRepository
     {
         return Country::findOrFail($id);
     }
+   
 
     public function getAllgovernrates($country)
     {
-        $governrates = $country->governrates;
+        $governrates = $country->governrates()->paginate(10);
         return $governrates;
     }
             public function getGovernrate($id)
@@ -40,5 +42,21 @@ class WorldRepository
        $country->is_active=$country->is_active ? 0:1;
        $country->save();
         return $country;
+    }
+    public function changStatusgov($governrate)
+    {
+       $governrate->is_active=$governrate->is_active ? 0:1;
+       $governrate->save();
+        return $governrate;
+    }
+    public function getSippingPrice($id){
+        $priceGovernrate=ShippingGovernrate::where('governrate_id',$id)->first();
+    return $priceGovernrate;
+    }
+    public function changeprice($priceGovernrate,$shipping_price)
+    {  
+       $priceGovernrate->price=$shipping_price;
+       $priceGovernrate->save();
+        return $priceGovernrate;
     }
 }

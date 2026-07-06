@@ -55,7 +55,7 @@
                                
                                                 <tr>
                                                     <th>{{ $loop->iteration }}</th>
-                                                    <td >{{ $country->name }} <i class="flag-icon flag-icon-eg"></i></td>
+                                                    <td ><a href="{{ route('dashboard.world.countries.governrates.index',$country->id) }}">{{ $country->name }}</a> <i class="flag-icon flag-icon-eg"></i></td>
                                                   <td>
                                                     <fieldset class="form-group position-relative has-icon-left">
     <input disabled type="text" class="form-control" id="iconLeft"
@@ -116,7 +116,7 @@
 
         var country_id = $(this).attr('country-id');
 
-        var url = "{{ route('dashboard.world.status', ':id') }}";
+        var url = "{{ route('dashboard.world.countries.status', ':id') }}";
         url = url.replace(':id', country_id);
 
         $.ajax({
@@ -141,7 +141,7 @@
 
         }
 
-    
+ 
           
           }else{
             $('.tostar_error').text(response.msg);

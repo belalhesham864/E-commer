@@ -9,7 +9,7 @@ class Governrate extends Model
 {
         use HasTranslations;
     public array $translatable=['name'];
-    public $fillable = ['name','country_id'];
+    public $fillable = ['name','country_id','is_active'];
         
 
         public $timestamps = false;
@@ -18,5 +18,11 @@ class Governrate extends Model
    }
         public function cities(){
         return $this->hasMany(City::class,'governrate_id');
+     }
+        public function users(){
+        return $this->hasMany(User::class,'governrate_id');
+     }
+     public function shippingPrice(){
+          return $this->hasOne(ShippingGovernrate::class);
      }
 }

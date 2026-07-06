@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Governrate;
+use App\Models\ShippingGovernrate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ class GovernrateSeeder extends Seeder
     public function run(): void
     {
         // DB::table('governrates')->truncate();
+      
         $governrates=[
 [
     
@@ -23,6 +25,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الدقهلية',
             'en' => 'Dakahlia',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -30,6 +33,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'البحر الأحمر',
             'en' => 'Red Sea',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -37,6 +41,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'البحيرة',
             'en' => 'Beheira',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -44,6 +49,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الفيوم',
             'en' => 'Faiyum',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -51,6 +57,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الغربية',
             'en' => 'Gharbia',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -58,6 +65,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الإسكندرية',
             'en' => 'Alexandria',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -65,6 +73,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الإسماعيلية',
             'en' => 'Ismailia',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -72,6 +81,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الجيزة',
             'en' => 'Giza',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -79,6 +89,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'المنوفية',
             'en' => 'Monufia',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -86,6 +97,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'المنيا',
             'en' => 'Minya',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -93,6 +105,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'القاهرة',
             'en' => 'Cairo',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -100,6 +113,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'القليوبية',
             'en' => 'Qalyubia',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -107,6 +121,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الوادي الجديد',
             'en' => 'New Valley',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -114,6 +129,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الشرقية',
             'en' => 'Sharqia',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -121,6 +137,8 @@ class GovernrateSeeder extends Seeder
             'ar' => 'السويس',
             'en' => 'Suez',
         ],
+        
+
     ],
     [
         'country_id' => 1,
@@ -128,6 +146,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'أسوان',
             'en' => 'Aswan',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -135,6 +154,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'أسيوط',
             'en' => 'Asyut',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -142,6 +162,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'بني سويف',
             'en' => 'Beni Suweif',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -149,6 +170,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'بور سعيد',
             'en' => 'Port Said',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -156,6 +178,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'دمياط',
             'en' => 'Damietta',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -163,6 +186,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'كفر الشيخ',
             'en' => 'Kafr el-Sheikh',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -170,6 +194,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'مطروح',
             'en' => 'Matruh',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -177,6 +202,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'قنا',
             'en' => 'Qena',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -184,6 +210,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'سوهاج',
             'en' => 'Sohag',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -191,6 +218,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'جنوب سيناء',
             'en' => 'South Sinai',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -198,6 +226,7 @@ class GovernrateSeeder extends Seeder
             'ar' => 'شمال سيناء',
             'en' => 'North Sinai',
         ],
+        
     ],
     [
         'country_id' => 1,
@@ -205,13 +234,19 @@ class GovernrateSeeder extends Seeder
             'ar' => 'الأقصر',
             'en' => 'Luxor',
         ],
+        
     ],
 
         ];
 
 
         foreach($governrates as $governrate){
-            Governrate::create($governrate);
+         $newgovenrate=Governrate::create($governrate);
+
+            ShippingGovernrate::create([
+                'price'=>rand(100,200),
+                'governrate_id'=>$newgovenrate->id,
+            ]);
         }
     }
 }

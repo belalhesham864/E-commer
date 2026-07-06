@@ -57,10 +57,20 @@ Route::group(
 		  Route::post('admins/search', [AdminController::class,'search'])->name('admins.search');
 		  });
 		    Route::controller(WorldController::class)->name('world.')->group(function(){
+               Route::prefix('countries')->name('countries.')->group(function(){
 
-				Route::get('countries','getAllCountries')->name('countries');
-				Route::get('change-Status/{id}','changStatus')->name('status');
-				});
+				   Route::get('/','getAllCountries')->name('index');
+				   Route::get('/{country_id}/Governrares','getAllgovernrates')->name('governrates.index');
+				   Route::get('/change-Status/{id}','changStatus')->name('status');
+				   
+				   });
+
+				      Route::prefix('governrate')->name('governrate.')->group(function(){
+						  Route::get('/change-Status/{id}','changStatusgov')->name('status');
+						  Route::PUT('/change-price/{id}','changeprice')->name('price');
+						  
+				   });
+				   });
 
 		});
 	}
