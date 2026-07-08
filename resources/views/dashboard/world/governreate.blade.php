@@ -28,8 +28,12 @@
 
             </div>
             <div class="card">
-
-                <div class="card-content collapse show">
+<input type="search"
+ id="search"
+       class="form-control w-25"
+       name="search"
+       placeholder="Search...">
+                   <div class="card-content collapse show">
                     {{-- alert --}}
               @include('dashboard.includes.toster-error')
               @include('dashboard.includes.toster-success')
@@ -50,7 +54,7 @@
                                 </tr>
                             </thead>
 
-             <tbody>
+             <tbody id="governrate-table">
 @forelse($governrates as $governrate)
 
 <tr>
@@ -93,7 +97,7 @@
             data-group-cls="btn-group-sm">
     </td>
 
-    <td>
+    <td class="price-shipping_{{ $governrate->id }}">
         {{ $governrate->shippingPrice->price }} $
     </td>
 
@@ -121,12 +125,14 @@
                 </button>
             </div>
 
-            <form action="{{ route('dashboard.world.governrate.price', $governrate->id) }}"
+            <form action=""
+            class="update_price"
+            gov-id="{{ $governrate->id }}"
                   method="POST">
 
                 @csrf
                 @method('PUT')
-
+    <div class="alert alert-danger" style="display: none" id="errors_{{ $governrate->id }}"></div>
                 <div class="modal-body">
 
                     <label>Shipping Price</label>
@@ -135,7 +141,7 @@
                            class="form-control"
                            name="shpping_price"
                            value="{{ $governrate->shippingPrice->price }}"
-                           required>
+                           >
 
                 </div>
 
@@ -186,6 +192,7 @@
 <script src="{{ asset('asset/dashboard') }}/vendors/js/forms/toggle/bootstrap-checkbox.min.js"></script>
 
 <script src="{{ asset('asset/dashboard') }}/js/scripts/tables/components/table-components.js"></script>
+
 <script>
     $(function(){
         $('.change_status').on('change',function(){
@@ -227,6 +234,74 @@
            });
         });
     });
+</script>
+
+<script>
+    $(document).on('submit','.update_price',function(e){
+        e.preventDefault();
+        var data = new FormData($(this)[0]);
+         var form= $(this);
+        var id =$(this).attr('gov-id');
+        var url="{{ route('dashboard.world.governrate.price',':id') }}";
+        url=url.replace(':id',id);
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:data,
+            processData:false,
+            contentType:false,
+            success: function(response){
+                if(response.status==true){
+
+                    $('.tostar_success').text(response.msg);
+                    
+                    $('.tostar_success').show();
+                    
+                    
+                    $('.price-shipping_'+response.data.id).empty();
+                    $('.price-shipping_'+response.data.id).text(response.data.price+'$');
+                   form.closest('.modal').modal('hide');
+            
+                }
+                setTimeout(() => {
+                    $('.tostar_success').hide();
+ 
+                }, 2000);
+            },
+            error: function(data){
+            var response= $.parseJSON(data.responseText);
+             $('#errors_'+id).text(response.errors.shpping_price[0]).show();
+
+             setTimeout(() => {
+                  $('#errors_'+id).hide();
+             }, 2000);
+            }
+        });
+    });
+</script>
+<script>
+     let depounce;
+    $(document).on('input','#search',function(e){
+       e.preventDefault();
+       var search =$(this).val();
+       clearTimeout(depounce);
+       depounce= setTimeout(() => {
+            $.ajax({
+        url:window.location.href,
+        type:'GET',
+        data:{
+            search:search
+        },
+   
+        success: function(response){
+               $('#governrate-table').html(response);
+                  $('.switch:checkbox').checkboxpicker();
+
+        },
+
+       });
+        }, 1000); 
+           });
 </script>
 
 @endpush

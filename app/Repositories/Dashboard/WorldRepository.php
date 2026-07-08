@@ -23,7 +23,10 @@ class WorldRepository
 
     public function getAllgovernrates($country)
     {
-        $governrates = $country->governrates()->paginate(10);
+        $governrates = $country->governrates()->when(request()->search,function($q){
+        $q->where('name', 'like', '%' . request()->search . '%');
+        })
+        ->paginate(10);
         return $governrates;
     }
             public function getGovernrate($id)

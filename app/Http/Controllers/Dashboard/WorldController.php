@@ -20,6 +20,10 @@ class WorldController extends Controller
   {
 
     $governrates = $this->worldServices->getAllgovernrates($id);
+    if(request()->ajax()){
+          return view('dashboard.world.ajax-governreate', compact('governrates'));
+
+    }
     return view('dashboard.world.governreate', compact('governrates'));
   }
   public function getAllcities($id)
@@ -60,10 +64,9 @@ class WorldController extends Controller
     ]);
     $price = $this->worldServices->changeprice($id, $request->shpping_price);
     if (!$price) {
-      flash()->error('Please Try Again Latter !');
-      return redirect()->back();
+    return response()->json(['status'=>false,'msg'=>'error please try again latter'],404);
     }
-    flash()->success('Shipping Price Updated Success');
-    return redirect()->back();
+ return response()->json(['status'=>true,'msg'=>'shipping price change success','data'=>$price],200);
   }
+  
 }
