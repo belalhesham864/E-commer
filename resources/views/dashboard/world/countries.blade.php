@@ -66,7 +66,7 @@
 </fieldset>
                                                   </td>
                                                     <td class="text-center width-350">
-                          <div class="badge badge-pill badge-info">{{ $country->governrates->count() }}</div>
+                          <div class="badge badge-pill badge-info">{{ $country->governrates_count }}</div>
                         </td>
                                                     <td id="status_{{ $country->id }}">@if ($country->is_active==0)
                                                         <div class="badge badge-danger">Not Active</div>    

@@ -19,5 +19,8 @@ class Country extends Model
      public function governrates(){
         return $this->hasMany(Governrate::class,'country_id');
      }
+     public function users(){
+        return $this->hasMany(User::class,'country_id');
+     }
 
 }

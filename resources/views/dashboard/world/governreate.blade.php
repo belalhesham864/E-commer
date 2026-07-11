@@ -72,13 +72,13 @@
 
     <td class="text-center">
         <span class="badge badge-pill badge-info">
-            {{ $governrate->cities->count() }}
+            {{ $governrate->cities_count }}
         </span>
     </td>
 
     <td class="text-center">
         <span class="badge badge-pill badge-info">
-            {{ $governrate->users->count() }}
+            {{ $governrate->users_count }}
         </span>
     </td>
         <td id="status_{{ $governrate->id }}">@if ($governrate->is_active==0)

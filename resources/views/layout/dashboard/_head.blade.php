@@ -64,4 +64,36 @@
 }
 </style>
   <!-- END Custom CSS-->
+
+
+
+
+
+  {{-- Datatables Css --}}
+
+    {{-- css DataTable --}}
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.min.css">
+  {{-- css Button --}}
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.2.6/css/buttons.dataTables.min.css">
+  {{-- css responsive --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/3.0.8/css/responsive.dataTables.min.css">
+  {{-- css colReorder --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/colreorder/2.1.2/css/colReorder.dataTables.min.css">
+
+  {{-- css rowReorder --}}
+  {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.5.1/css/rowReorder.dataTables.min.css"> --}}
+
+  {{-- css select --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/3.1.3/css/select.dataTables.min.css">
+  {{-- css Scroller --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/2.4.3/css/scroller.dataTables.min.css">
+
+  {{-- css FixedHeader --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/5.0.5/css/fixedColumns.bootstrap5.min.css">
+  {{-- End Datatables Css --}}
+
+
+@stack('css')
 </head>

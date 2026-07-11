@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetPasswordController;
+use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WelcomeController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\WorldController;
 use App\Notifications\Dashboard\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,7 @@ Route::group(
 			##############################Roles Routes#######################
 
 			Route::resource('roles',RoleController::class)->middleware('can:roles');
-			##############################Roles Routes#######################
+			##############################admins Routes#######################
       Route::middleware('can:admins')->group(function(){
 		  
 		  Route::resource('admins',AdminController::class);
@@ -56,7 +57,9 @@ Route::group(
 		  Route::post('admins/{id}/password', [AdminController::class,'changePassword'])->name('admins.password');
 		  Route::post('admins/search', [AdminController::class,'search'])->name('admins.search');
 		  });
-		    Route::controller(WorldController::class)->name('world.')->group(function(){
+		  	##############################world Routes#######################
+
+		    Route::controller(WorldController::class)->middleware('can:World')->name('world.')->group(function(){
                Route::prefix('countries')->name('countries.')->group(function(){
 
 				   Route::get('/','getAllCountries')->name('index');
@@ -71,7 +74,19 @@ Route::group(
 						  
 				   });
 				   });
+				##############################Category Routes#######################
+            Route::middleware('can:categories')->group(function(){
+       Route::resource('categories',CategoryController::class)->except('show');
+	   Route::get('categories-all',[CategoryController::class,'getAll'])->name('categories.all');
+       Route::patch('categories/status/{id}',[CategoryController::class,'changeStatus'])->name('category.status');
+			});
 
+
+				##############################Brand Routes#######################
+            Route::middleware('can:brands')->group(function(){
+       Route::resource('brands',BrandController::class);
+			});
+         
 		});
 	}
 );

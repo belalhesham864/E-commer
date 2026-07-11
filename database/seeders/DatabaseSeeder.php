@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         CounterySeeder::class,
         GovernrateSeeder::class,
         citySeeder::class,
+        CategorySeeder::class,
      ]);
     }
 }

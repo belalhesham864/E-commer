@@ -12,7 +12,8 @@ class WorldRepository
 
     public function getAllCountries()
     {
-        $countries = Country::select('id', 'name', 'phone_code', 'is_active')->get();
+        $countries = Country::withCount(['governrates'])->get();
+    
         return $countries;
     }
         public function getCountry($id)
@@ -23,7 +24,10 @@ class WorldRepository
 
     public function getAllgovernrates($country)
     {
-        $governrates = $country->governrates()->when(request()->search,function($q){
+        $governrates = $country->governrates()
+        ->with(['country','shippingPrice'])
+        ->withCount(['users','cities'])
+        ->when(request()->search,function($q){
         $q->where('name', 'like', '%' . request()->search . '%');
         })
         ->paginate(10);
@@ -37,6 +41,7 @@ class WorldRepository
         public function getAllcities($governrate)
     {
         $cities = $governrate->cities;
+
         return $cities;
     }
 

@@ -1,16 +1,30 @@
  <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
       <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-        <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+       @can('categories')
+        <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Categories</span></a>
           <ul class="menu-content">
-            <li class="active"><a class="menu-item" href="dashboard-ecommerce.html" data-i18n="nav.dash.ecommerce">eCommerce</a>
+            <li ><a class="menu-item" href="{{ route('dashboard.categories.index') }}"data-i18n="nav.dash.ecommerce">Categories</a>
             </li>
-            <li><a class="menu-item" href="dashboard-crypto.html" data-i18n="nav.dash.crypto">Crypto</a>
+            <li><a class="menu-item" href="{{ route('dashboard.categories.create') }}" data-i18n="nav.dash.crypto">Create Category</a>
             </li>
-            <li><a class="menu-item" href="dashboard-sales.html" data-i18n="nav.dash.sales">Sales</a>
-            </li>
+          
           </ul>
         </li>
+         
+       @endcan
+       @can('brands')
+        <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Brands</span></a>
+          <ul class="menu-content">
+            <li ><a class="menu-item" href="{{ route('dashboard.brands.index') }}"data-i18n="nav.dash.ecommerce">Brands</a>
+            </li>
+            <li><a class="menu-item" href="{{ route('dashboard.brands.create') }}" data-i18n="nav.dash.crypto">Create Brand</a>
+            </li>
+          
+          </ul>
+        </li>
+         
+       @endcan
         <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title" data-i18n="nav.templates.main">Templates</span></a>
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.templates.vert.main">Vertical</a>
@@ -53,6 +67,7 @@
         </li>
         
       @endcan
+  @can('admins')
         <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.navbars.main">Admins</span></a>
           <ul class="menu-content">
                         <li><a class="menu-item" href="{{ route('dashboard.admins.index') }}" data-i18n="nav.navbars.nav_light">Admins</a>
@@ -60,12 +75,17 @@
 
           </ul>
         </li>
+    
+  @endcan
+     @can('World')
         <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.navbars.main">World</span></a>
           <ul class="menu-content">
                         <li><a class="menu-item"  href="{{ route('dashboard.world.countries.index') }}" data-i18n="nav.navbars.nav_light">Countries</a>
 
           </ul>
         </li>
+       
+     @endcan
         <li class=" nav-item"><a href="#"><i class="la la-arrows-v"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">Vertical Nav</span></a>
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.vertical_nav.vertical_navigation_types.main">Navigation Types</a>
