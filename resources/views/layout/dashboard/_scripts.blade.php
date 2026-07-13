@@ -9,6 +9,37 @@
 <script src="{{ asset('asset/dashboard') }}/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
 <script src="{{ asset('asset/dashboard') }}/vendors/js/forms/toggle/bootstrap-checkbox.min.js"></script>
 
+
+
+ {{-- File Input  --}}
+ <script src="{{ asset('vendor/file-input/js/fileinput.min.js') }}"></script>
+ <script src="{{ asset('vendor/file-input/themes/fa5/theme.min.js') }}"></script>
+
+
+
+
+
+<script>
+    $(function (){
+        $('#singlimage').fileinput({
+    theme: 'fa5',
+              showCancel: true,
+              
+                 maxFileCount: 1,
+    showUpload: false,
+    showRemove: true,        
+    enableResumableUpload: false,
+    browseLabel: 'select image', 
+        });
+
+    });
+</script>
+
+
+
+
+
+
 {{-- alert sweet Delete--}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -58,7 +89,7 @@ $(document).on('click','.change_status',function(e){
   
 Swal.fire({
   title: "Are you sure?",
-  text: "Do you want to change the status of this category?",
+  text: "Do you want to change the status of this ?",
   icon: "warning",
   showCancelButton: true,
   confirmButtonColor: "#3085d6",

@@ -33,12 +33,18 @@
             <div class="card">
 
                 <div class="card-content collapse show">
+                    
                     {{-- alert --}}
                     @include('dashboard.includes.toster-error')
                     @include('dashboard.includes.toster-success')
 
 
                     <div class="card-content collapse show">
+                          <a class="btn btn-primary round btn-glow px-2"
+                          style="margin-left: 20px"
+           href="{{ route('dashboard.categories.create') }}">
+            Create category
+        </a>
                         <div class="card-body card-dashboard">
                             <p class="card-text">
                                 Manage all your categories from one place. You can add a new category, edit or update
@@ -52,6 +58,7 @@
                                         <th>Name</th>
                                         {{-- <th>Slug</th> --}}
                                         <th>Status</th>
+                                        <th>Products Count</th>
                                         <th>Created_at</th>
 
                                         <th>Action</th>
@@ -64,6 +71,7 @@
                                         <th>Name</th>
                                         {{-- <th>Slug</th> --}}
                                         <th>Status</th>
+                                        <th>Products Count</th>
                                         <th>Created_at</th>
 
                                         <th>Action</th>
@@ -112,6 +120,9 @@
                     {
                         data: 'status',
                         name: 'status'
+                    },
+                    {
+                        data: 'products_count',
                     },
                     {
                         data: 'created_at',

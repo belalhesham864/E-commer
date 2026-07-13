@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         GovernrateSeeder::class,
         citySeeder::class,
         CategorySeeder::class,
+        BrandSeeder::class,
      ]);
     }
 }

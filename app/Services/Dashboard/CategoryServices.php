@@ -31,6 +31,10 @@ class CategoryServices
             })
             ->addColumn('action', function ($category) {
                 return view('dashboard.categories.action', compact('category'));
+            })->addColumn('products_count', function ($category) {
+               
+            return $category->products_count==0 ? 'Not Found' :$category->products_count ;
+
             })
             ->rawColumns(['status'])
             ->make(true);

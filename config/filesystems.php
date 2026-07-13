@@ -38,14 +38,14 @@ return [
             'report' => false,
         ],
 
-        'public' => [
+        'brands' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            'root' => public_path('uploads/brands'),
+            'url' => env('APP_URL').'/uploads/brands',
             'visibility' => 'public',
             'throw' => false,
-            'report' => false,
         ],
+
 
         's3' => [
             'driver' => 's3',

@@ -65,7 +65,10 @@
 </style>
   <!-- END Custom CSS-->
 
-
+  {{-- File Input --}}
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/file-input/css/fileinput.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/file-input/themes/explorer-fa5/theme.min.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
 

@@ -85,6 +85,10 @@ Route::group(
 				##############################Brand Routes#######################
             Route::middleware('can:brands')->group(function(){
        Route::resource('brands',BrandController::class);
+	   	   Route::get('brands-all',[BrandController::class,'getAll'])->name('brands.all');
+		          Route::patch('brands/status/{id}',[BrandController::class,'changeStatus'])->name('brands.status');
+
+
 			});
          
 		});

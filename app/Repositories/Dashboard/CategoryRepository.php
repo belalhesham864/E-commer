@@ -7,7 +7,7 @@ use App\Models\category;
 class CategoryRepository
 {
  public function getAll(){
-      $categories=category::all();
+      $categories=category::select('id','name','status','created_at')->withCount('products');
       return $categories;
  }
  public function findById($id){
