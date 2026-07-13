@@ -46,4 +46,8 @@ class CategoryRepository
       $category->save();
       return $category;
  }
+ public function destroy($category){
+     return $category->delete();
+ 
+ }
 }

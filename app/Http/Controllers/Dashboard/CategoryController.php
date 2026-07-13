@@ -87,11 +87,15 @@ public function index()
      */
     public function destroy(string $id)
     {
-        $category=category::findOrFail($id);
-        $category->delete();
+            $delete=$this->categoryServices->destroy($id);
+       if(!$delete){
+        flash()->error('Please Try Again Latter');
+        return redirect()->route('dashboard.categories.index');
+        }
         flash()->success('Category Deleted Successfuly');
-        return redirect()->back();
+        return redirect()->route('dashboard.categories.index');
     }
+    
     public function changeStatus(string $id)
     {
        $status=$this->categoryServices->changeStatus($id);

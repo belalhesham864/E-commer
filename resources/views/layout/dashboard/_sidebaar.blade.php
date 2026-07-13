@@ -2,7 +2,7 @@
     <div class="main-menu-content">
       <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
        @can('categories')
-        <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Categories</span></a>
+        <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Categories</span><span class="badge badge-info badge-pill float-right mr-2">{{ $categories_count }}</span></a>
           <ul class="menu-content">
             <li ><a class="menu-item" href="{{ route('dashboard.categories.index') }}"data-i18n="nav.dash.ecommerce">Categories</a>
             </li>
@@ -14,7 +14,7 @@
          
        @endcan
        @can('brands')
-        <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Brands</span></a>
+        <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Brands</span><span class="badge badge-info badge-pill float-right mr-2">{{ $brands_count }}</span></a>
           <ul class="menu-content">
             <li ><a class="menu-item" href="{{ route('dashboard.brands.index') }}"data-i18n="nav.dash.ecommerce">Brands</a>
             </li>
@@ -68,7 +68,7 @@
         
       @endcan
   @can('admins')
-        <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.navbars.main">Admins</span></a>
+        <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.navbars.main">Admins</span><span class="badge badge-info badge-pill float-right mr-2">{{ $admins_count }}</span></a>
           <ul class="menu-content">
                         <li><a class="menu-item" href="{{ route('dashboard.admins.index') }}" data-i18n="nav.navbars.nav_light">Admins</a>
                         <li><a class="menu-item" href="{{ route('dashboard.admins.create') }}" data-i18n="nav.navbars.nav_light">Create Admin</a>

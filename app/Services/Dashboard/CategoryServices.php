@@ -3,6 +3,7 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\CategoryRepository;
+use Illuminate\Support\Facades\Cache;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoryServices
@@ -54,11 +55,20 @@ class CategoryServices
     }
     public function store($data)
     {
-        return $this->categoryRepository->store($data);
+        $store= $this->categoryRepository->store($data);
+                Cache::forget('categories_count');
+return $store;
     }
     public function changeStatus($id)
     {
         $category = self::findById($id);
         return $this->categoryRepository->changeStatus($category);
+    }
+    public function destroy($id)
+    {
+        $category = self::findById($id);
+        $delete= $this->categoryRepository->destroy($category);
+        Cache::forget('categories_count');
+        return $delete;
     }
 }
