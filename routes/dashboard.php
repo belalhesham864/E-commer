@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetPasswordController;
 use App\Http\Controllers\Dashboard\BrandController;
+use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\CategoryController;
@@ -87,6 +88,13 @@ Route::group(
        Route::resource('brands',BrandController::class);
 	   	   Route::get('brands-all',[BrandController::class,'getAll'])->name('brands.all');
 		          Route::patch('brands/status/{id}',[BrandController::class,'changeStatus'])->name('brands.status');
+
+
+			});
+				##############################Coupon Routes#######################
+		Route::middleware('can:coupons')->group(function(){
+       Route::resource('coupons',CouponController::class);
+	   	   Route::get('coupons-all',[CouponController::class,'getAll'])->name('coupons.all');
 
 
 			});

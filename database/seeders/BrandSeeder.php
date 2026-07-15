@@ -9,11 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class BrandSeeder extends Seeder
 {
-  DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-    Brand::truncate();
 
-    DB::statement('SET FOREIGN_KEY_CHECKS=1;')
     public function run(): void
     {
         $brands = [
