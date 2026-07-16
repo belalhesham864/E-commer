@@ -97,7 +97,7 @@ class CouponController extends Controller
            return response()->json(['status'=>false,'msg'=>'error please try again latter'],404);
 
         }
-        return response()->json(['status'=>true,'msg'=>'coupon Deleted success'],201);
+        return response()->json(['status'=>true,'msg'=>'coupon Deleted success'],200);
 
     }
 }

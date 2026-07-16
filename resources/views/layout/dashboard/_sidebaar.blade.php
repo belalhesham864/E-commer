@@ -37,6 +37,18 @@
         </li>
          
        @endcan
+       @can('faqs')
+        <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Faqs</span><span class="badge badge-info badge-pill float-right mr-2">{{ $Faqs_count }}</span></a>
+          <ul class="menu-content">
+            <li ><a class="menu-item" href="{{ route('dashboard.faqs.index') }}"data-i18n="nav.dash.ecommerce">Faqs</a>
+            </li>
+            {{-- <li><a class="menu-item" href="{{ route('dashboard.coupons.create') }}" data-i18n="nav.dash.crypto">Create Brand</a>
+            </li> --}}
+          
+          </ul>
+        </li>
+         
+       @endcan
         <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title" data-i18n="nav.templates.main">Templates</span></a>
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.templates.vert.main">Vertical</a>

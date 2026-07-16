@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\category;
 use App\Models\Coupon;
+use App\Models\Faqs;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
@@ -46,11 +47,17 @@ class ViewServicePorvider extends ServiceProvider
             return Coupon::count();
         });
       }
+      if(!Cache::has('Faqs_count')){
+          Cache::remember('Faqs_count',now()->addHour(),function(){
+            return Faqs::count();
+        });
+      }
       view()->share([
         'categories_count'=>Cache::get('categories_count'),
         'brands_count'=>Cache::get('brands_count'),
         'admins_count'=>Cache::get('admins_count'),
         'coupons_count'=>Cache::get('coupons_count'),
+        'Faqs_count'=>Cache::get('Faqs_count'),
       ]);
        });
     }

@@ -183,7 +183,7 @@
                         $('#alert_div').hide();
 
                         $('#create_coupon')[0].reset();
-                        $('#yajra_table').DataTable().ajax.reload();
+                        $('#yajra_table').DataTable().ajax.reload(null,false);
 
                         $('#createcoupon').modal('hide');
                         Swal.fire({
