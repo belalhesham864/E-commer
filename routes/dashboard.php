@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\FaqController;
+use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\WorldController;
 use App\Notifications\Dashboard\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
@@ -98,7 +99,18 @@ Route::group(
 			Route::middleware('can:faqs')->group(function () {
 				Route::resource('faqs', FaqController::class);
 				Route::get('faqs-all', [FaqController::class, 'getAll'])->name('faqs.all');
+
+
 			});
+                			##############################Faqs Routes#######################
+                   		Route::controller(SettingController::class)->middleware('can:settings')->prefix('settings')->name('settings.')->group(function () {
+				
+
+					Route::get('/', 'index')->name('index');
+					
+					Route::PUT('/update/{id}', 'updateSetting')->name('update');
+				});
+
 		});
 	}
 );

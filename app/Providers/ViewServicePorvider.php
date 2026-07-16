@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\category;
 use App\Models\Coupon;
 use App\Models\Faqs;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
@@ -60,5 +61,31 @@ class ViewServicePorvider extends ServiceProvider
         'Faqs_count'=>Cache::get('Faqs_count'),
       ]);
        });
+       $setting=$this->firstOrCreateSetting();
+       view()->share([
+        'setting'=>$setting
+       ]);
+       
+    }
+    public function firstOrCreateSetting(){
+      $getSetting=Setting::firstOr(function(){
+        return  Setting::create([
+    'site_name'            => 'E-Commerce',
+    'site_desc'            => 'Best online shopping platform.',
+    'phone'                => '+20 1001234567',
+    'address'              => 'Mansoura, Egypt',
+    'email'                => 'info@ecommerce.com',
+    'email_support'        => 'support@ecommerce.com',
+    'facebook_url'         => 'https://facebook.com/ecommerce',
+    'twitter_url'          => 'https://twitter.com/ecommerce',
+    'youtube_url'          => 'https://youtube.com/@ecommerce',
+    'meta_desc'            => 'Best online store for electronics, fashion and more.',
+    'logo'                 => 'logo.png',
+    'favicon'              => 'favicon.ico',
+    'site_copyright'       => '© 2026 E-Commerce. All Rights Reserved.',
+    'promotion_video_url'  => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        ]);
+      });
+      return $getSetting;
     }
 }

@@ -47,7 +47,7 @@ class BrandServices
     }
     public function create($brand)
     {
-        if ($brand['logo'] != null) {
+        if (array_key_exists('logo',$brand)&&$brand['logo'] != null) {
             $fileName = $this->imageManger->uploadSingeImage('/', $brand['logo'], 'brands');
             $brand['logo'] = $fileName;
         }
@@ -58,13 +58,12 @@ class BrandServices
     public function updateBrand($id, $data)
     {
         $brand = self::findBrandById($id);
-        if (isset($data['logo']) && $data['logo'] != null) {
+        if (array_key_exists('logo',$data) && $data['logo'] != null) {
             $this->imageManger->deleteImageFromLocal($brand->logo);
             $fileName = $this->imageManger->uploadSingeImage('/', $data['logo'], 'brands');
             $data['logo'] = $fileName;
-        }else{
-             unset($data['logo']);
         }
+         
         return $this->brandrepository->updateBrand($brand, $data);
     }
     public function changeStatus($id)
