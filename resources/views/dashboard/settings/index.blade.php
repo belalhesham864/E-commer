@@ -238,7 +238,7 @@
                                Edit
 
                             </button>
-                            <button class="btn btn-info" hidden id="save_btn">
+                            <button class="btn btn-info" hidden id="save_btn" disabled>
 
                                 <i class="ft-save"></i>
 
@@ -313,5 +313,31 @@
 $('.settingForm input[type="file"]').prop('disabled', true);
      });
     </script>
+<script>
+    $(function () {
+
+        let originalData = '';
+
+        $('#edit_btn').on('click', function () {
+            originalData = $('.settingForm').serialize();
+            $('#save_btn').prop('disabled', true);
+        });
+
+        $('.settingForm').on('input change', 'input, textarea, select', function () {
+            let currentData = $('.settingForm').serialize();
+
+if (currentData === originalData) {
+            $('#save_btn').prop('disabled', true);
+        } else {
+            $('#save_btn').prop('disabled', false);
+        }
+            });
+
+    $('#logoimage, #faviconimage').on('filebatchselected', function () {
+    $('#save_btn').prop('disabled', false);
+});
+
+    });
+</script>
 
 @endpush

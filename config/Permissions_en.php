@@ -2,6 +2,7 @@
 
 return[
     'admins'=>'Manage Admins',
+    'attributes'=>'Manage attribute',
     'categories' => 'Manage Categories',
     'brands' => 'Manage Brands',
     'coupons' => 'Manage Coupons',

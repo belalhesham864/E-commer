@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\AttributeController;
 use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetPasswordController;
@@ -99,17 +100,20 @@ Route::group(
 			Route::middleware('can:faqs')->group(function () {
 				Route::resource('faqs', FaqController::class);
 				Route::get('faqs-all', [FaqController::class, 'getAll'])->name('faqs.all');
-
-
 			});
-                			##############################Faqs Routes#######################
-                   		Route::controller(SettingController::class)->middleware('can:settings')->prefix('settings')->name('settings.')->group(function () {
-				
+			##############################Faqs Routes#######################
+			Route::controller(SettingController::class)->middleware('can:settings')->prefix('settings')->name('settings.')->group(function () {
 
-					Route::get('/', 'index')->name('index');
-					
-					Route::PUT('/update/{id}', 'updateSetting')->name('update');
-				});
+
+				Route::get('/', 'index')->name('index');
+
+				Route::PUT('/update/{id}', 'updateSetting')->name('update');
+			});
+						##############################Attribute Routes#######################
+			Route::middleware('can:attributes')->group(function () {
+				Route::resource('attributes', AttributeController::class);
+				Route::get('attributes-all', [AttributeController::class, 'getAll'])->name('attributes.all');
+			});
 
 		});
 	}
