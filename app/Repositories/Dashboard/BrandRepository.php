@@ -7,7 +7,7 @@ use App\Models\Brand;
 class BrandRepository
 {
     public function getAllBrands(){
-         return Brand::select('id','name','logo','slug','status','created_at')->latest()->withCount('products');
+         return Brand::select('id','name','logo','slug','status','created_at')->latest()->withCount('products')->get();
     }
     public function findBrandById($id){
         return Brand::findOrFail($id);

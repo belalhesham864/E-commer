@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\category;
+use App\Models\Contact;
 use App\Models\Coupon;
 use App\Models\Faqs;
 use App\Models\Setting;
@@ -48,6 +49,11 @@ class ViewServicePorvider extends ServiceProvider
             return Coupon::count();
         });
       }
+      if(!Cache::has('contacts_count')){
+          Cache::remember('contacts_count',now()->addHour(),function(){
+            return Contact::where('is_read',0)->count();
+        });
+      }
       if(!Cache::has('Faqs_count')){
           Cache::remember('Faqs_count',now()->addHour(),function(){
             return Faqs::count();
@@ -59,13 +65,14 @@ class ViewServicePorvider extends ServiceProvider
         'admins_count'=>Cache::get('admins_count'),
         'coupons_count'=>Cache::get('coupons_count'),
         'Faqs_count'=>Cache::get('Faqs_count'),
+        'contacts_count'=>Cache::get('contacts_count'),
       ]);
        });
        $setting=$this->firstOrCreateSetting();
        view()->share([
         'setting'=>$setting
        ]);
-       
+
     }
     public function firstOrCreateSetting(){
       $getSetting=Setting::firstOr(function(){

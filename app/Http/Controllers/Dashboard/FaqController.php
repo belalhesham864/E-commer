@@ -32,7 +32,7 @@ class FaqController extends Controller
         $data=$request->validated();
         $faqs=$this->faqService->create($data);
         if(!$faqs){
-                    return response()->json(['status'=>false,'msg'=>'error please try again latter'],404);
+         return response()->json(['status'=>false,'msg'=>'error please try again latter'],404);
         }
         return response()->json(['status'=>true,'msg'=>'FAQS Created success','faqs'=>$faqs],201);
     }
@@ -66,7 +66,7 @@ class FaqController extends Controller
         $data=$request->validated();
         $upadteFaq=$this->faqService->updateFaqs($id,$data);
         if(!$upadteFaq){
-            
+
                return response()->json(['status'=>false,'msg'=>'error please try again latter'],404);
         }
         return response()->json(['status'=>true,'msg'=>'Faqs Upated success','faqs'=>$upadteFaq],200);

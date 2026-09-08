@@ -1,0 +1,67 @@
+    .displayNone{
+        display: none;
+    }
+
+    .steps-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 30px 0;
+    }
+
+    .step-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .step-circle {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        background: #fff;
+        color: #777;
+        transition: 0.3s;
+    }
+
+    .step-circle.active {
+        border-color: #ffc107;
+        color: #333;
+        box-shadow: 0 0 0 5px rgba(255, 193, 7, 0.15);
+    }
+
+    .step-circle.completed {
+        background: #28a745;
+        border-color: #28a745;
+        color: white;
+    }
+
+    .step-line {
+        height: 2px;
+        background: #ddd;
+        flex: 1;
+        margin: 0 15px;
+    }
+
+    .step-line.completed-line {
+        background: #28a745;
+    }
+
+    .step-item span {
+        color: #999;
+        font-size: 14px;
+    }
+
+    .step-item span.active-text {
+        color: #333;
+        font-weight: 600;
+    }
+

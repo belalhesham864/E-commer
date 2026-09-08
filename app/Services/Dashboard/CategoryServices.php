@@ -15,6 +15,11 @@ class CategoryServices
     {
         return $this->categoryRepository->categoriesExecptChild($id);
     }
+    public function getAllcategories()
+    {
+ $categories = $this->categoryRepository->getAll();
+ return $categories;
+     }
     public function getAll()
     {
         $categories = $this->categoryRepository->getAll();
@@ -33,7 +38,7 @@ class CategoryServices
             ->addColumn('action', function ($category) {
                 return view('dashboard.categories.action', compact('category'));
             })->addColumn('products_count', function ($category) {
-               
+
             return $category->products_count==0 ? 'Not Found' :$category->products_count ;
 
             })

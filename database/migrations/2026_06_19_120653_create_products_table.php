@@ -12,41 +12,39 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-    $table->id();
+            $table->id();
 
-    $table->string('name');
-    $table->text('small_desc');
-    $table->longText('desc');
+            $table->string('name');
+            $table->text('small_desc');
+            $table->longText('desc');
+            $table->boolean('status')->default(1);
+            $table->string('sku')->unique();
+            $table->date('available_for')->nullable();
+            $table->integer('views')->default(0);
 
-    $table->boolean('status')->default(1);
+            $table->boolean('has_variants')->default(0);
 
-    $table->string('sku')->unique();
 
-    $table->date('available_for')->nullable();
+            $table->decimal('price', 8, 3)->nullable(); // if has veriants it well be null
+            $table->boolean('has_discount')->default(0); // if has veriants it well be 0
+            $table->decimal('discount')->nullable();
+            $table->date('start_discount')->nullable();
+            $table->date('end_discount')->nullable();
 
-    $table->decimal('price', 8, 3);
-    $table->decimal('discount');
+            $table->boolean('manage_stock')->default(0);
+            $table->integer('quantity')->nullable(); // if has veriants it well be null
+            $table->integer('available_in_stock')->default(1);
+ 
+            $table->foreignId('category_id')
+                ->constrained('categories')
+                ->onDelete('cascade');
 
-    $table->date('start_discount')->nullable();
-    $table->date('end_discount')->nullable();
+            $table->foreignId('brand_id')
+                ->constrained('brands')
+                ->onDelete('cascade');
 
-    $table->boolean('manage_stock')->default(0);
-
-    $table->integer('quantity')->default(1);
-    $table->integer('available_in_stock')->default(1);
-
-    $table->integer('views')->default(0);
-
-    $table->foreignId('category_id')
-          ->constrained('categories')
-          ->onDelete('cascade');
-
-    $table->foreignId('brand_id')
-          ->constrained('brands')
-          ->onDelete('cascade');
-
-    $table->timestamps();
-});
+            $table->timestamps();
+        });
     }
 
     /**

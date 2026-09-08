@@ -49,10 +49,10 @@
 
                             <tbody>
                                 @forelse ( $roles as $role )
-                                    
-                               
-                                    
-                               
+
+
+
+
                                                 <tr>
                                                     <th>{{ $loop->iteration }}</th>
                                                     <td>{{ $role->role }}</td>
@@ -73,7 +73,7 @@
                                                     <td>{{ $role->created_at->diffForHumans() }}</td>
                                                     <td>
 
-                                                 <div class="dropdown float-md-right">
+          <div class="dropdown float-md-right">
     <button class="btn btn-danger dropdown-toggle round btn-glow px-2"
         type="button"
         id="dropdownActions{{$role->id}}"
@@ -107,7 +107,7 @@
 
                                 @empty
                                     <td colspan="4">No Data Found</td>
-                                 @endforelse 
+                                 @endforelse
 
 
                     </tbody>

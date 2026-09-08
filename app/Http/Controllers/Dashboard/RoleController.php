@@ -18,7 +18,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles=$this->roleService->allRole();
-      
+
         return view('dashboard.roles.index',compact('roles'));
     }
 
@@ -48,7 +48,7 @@ class RoleController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    { 
+    {
         //
     }
 
@@ -57,8 +57,8 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        
-        $role=$this->roleService->findRole($id);  
+
+        $role=$this->roleService->findRole($id);
         return view('dashboard.roles.edit',compact('role'));
     }
 
@@ -67,7 +67,7 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, string $id)
     {
-        
+
       $update_role=  $this->roleService->update($id,$request);
 
         if(!$update_role){
@@ -76,7 +76,7 @@ class RoleController extends Controller
         }
         flash()->success('Role Updated Successfuly');
         return redirect()->route('dashboard.roles.index');
-        
+
     }
 
     /**
@@ -93,4 +93,5 @@ class RoleController extends Controller
         flash()->success(__('words.deleteRolesuccess'));
         return redirect()->back();
     }
+
 }

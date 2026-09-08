@@ -21,7 +21,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
+        'is_active',
+        'phone',
         'password',
+        'governrate_id',
+        'country_id',
+        'city_id'
     ];
 
     /**
@@ -46,7 +52,27 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+     public function country(){
+    return $this->belongsTo(Country::class,'country_id');
+   }
      public function governrate(){
     return $this->belongsTo(Governrate::class,'governrate_id');
    }
+     public function city(){
+    return $this->belongsTo(City::class,'city_id');
+   }
+     public function orders(){
+    return $this->hasMany(Order::class);
+   }
+   public function getStatus(){
+    return $this->status==1 ? 'Active' :'InActive';
+   }
+      public function getCreatedAtAttribute($value)
+    {
+        return date('d/m/Y h:m A', strtotime($value));
+    }
+    public function getEmailVerifiedAtAttribute($value){
+        return date('d/m/Y h:m A', strtotime($value));
+
+    }
 }

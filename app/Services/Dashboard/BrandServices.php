@@ -13,6 +13,10 @@ class BrandServices
      * Create a new class instance.
      */
     public function __construct(private BrandRepository $brandrepository, private ImageManger $imageManger) {}
+    public function Brands(){
+        $brands = $this->brandrepository->getAllBrands();
+        return $brands;
+    }
     public function getAllBrands()
     {
         $brands = $this->brandrepository->getAllBrands();
@@ -63,13 +67,13 @@ class BrandServices
             $fileName = $this->imageManger->uploadSingeImage('/', $data['logo'], 'brands');
             $data['logo'] = $fileName;
         }
-         
+
         return $this->brandrepository->updateBrand($brand, $data);
     }
     public function changeStatus($id)
     {
         $brand = self::findBrandById($id);
-    
+
         return $this->brandrepository->changeStatus($brand);
     }
     public function Delete($id)

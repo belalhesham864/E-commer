@@ -25,6 +25,7 @@ class FaqsRequest extends FormRequest
         return [
             'question'=>'required|string|min:10',
             'answer'=>'required|string',
+   
         ];
     }
 }

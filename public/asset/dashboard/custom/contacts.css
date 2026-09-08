@@ -1,0 +1,72 @@
+
+
+            body.email-application {
+                overflow: hidden !important;
+            }
+
+            .email-application .app-content {
+                height: calc(100vh - 4rem) !important;
+                overflow: hidden !important;
+                padding: 0 !important;
+            }
+
+            /* LTR Layout (English): sidebar-left on the left, content-right on the right */
+            .email-application .sidebar-left {
+                float: left !important;
+                width: 499px !important;
+                height: 100% !important;
+            }
+
+            .email-application .content-right {
+                float: left !important;
+                width: calc(100% - 500px) !important;
+                height: 100% !important;
+            }
+
+            .email-application .sidebar {
+                width: 499px !important;
+                height: 100% !important;
+            }
+
+            .email-application .email-app-sidebar {
+                height: 100% !important;
+            }
+
+            .email-application .email-app-menu {
+                height: 100% !important;
+                float: left !important;
+            }
+
+            .email-application .email-app-list-wraper {
+                height: 100% !important;
+                float: left !important;
+            }
+
+            .email-application .email-app-list {
+                height: 100% !important;
+                position: relative;
+            }
+
+            .email-application .email-app-details {
+                height: calc(100vh - 5.5rem) !important;
+                overflow-y: auto !important;
+                margin-bottom: 0 !important;
+            }
+
+            .email-application #users-list {
+                position: absolute !important;
+                top: 70px !important;
+                bottom: 0 !important;
+                height: auto !important;
+                overflow-y: auto !important;
+                width: 100% !important;
+            }
+
+            .email-application .chat-fixed-search {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                z-index: 10 !important;
+            }

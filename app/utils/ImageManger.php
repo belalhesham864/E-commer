@@ -11,6 +11,15 @@ class ImageManger{
        self::storeImageInLocal($image,$path,$fileName,$disk);
         return $fileName;
     }
+      public function uploadImages($images,$model,$disk){
+           foreach($images as $image){
+            $fileName=$this->generateImageName($image);
+            $this->storeImageInLocal($image,'/',$fileName,$disk);
+            $model->images()->create([
+                'file_name'=>$fileName,
+            ]);
+           }
+      }
   public function deleteImageFromLocal($image){
     if(File::exists(public_path($image))){
      File::delete(public_path($image));

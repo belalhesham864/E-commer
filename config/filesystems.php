@@ -45,6 +45,20 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'products' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/products'),
+            'url' => env('APP_URL').'/uploads/products',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'users' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/users'),
+            'url' => env('APP_URL').'/uploads/users',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         'settings' => [
             'driver' => 'local',
             'root' => public_path('uploads/settings'),

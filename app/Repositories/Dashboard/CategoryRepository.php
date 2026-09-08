@@ -7,7 +7,7 @@ use App\Models\category;
 class CategoryRepository
 {
  public function getAll(){
-      $categories=category::select('id','name','status','created_at')->withCount('products');
+      $categories=category::select('id','name','status','created_at')->withCount('products')->get();
       return $categories;
  }
  public function findById($id){
@@ -26,7 +26,7 @@ class CategoryRepository
     $category->setTranslation('name','en',$data['name']['en']);
     $category->setTranslation('name','ar',$data['name']['ar']);
     $category->status=$data['status'];
-    
+
     $category->parent=$data['parent'] ?? null;
     $category->save();
     return $category;
@@ -48,6 +48,6 @@ class CategoryRepository
  }
  public function destroy($category){
      return $category->delete();
- 
+
  }
 }

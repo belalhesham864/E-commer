@@ -141,3 +141,4 @@ Swal.fire({
   {{-- End  DataTables Cdn --}}
 
 @stack('scripts')
+@livewireScripts

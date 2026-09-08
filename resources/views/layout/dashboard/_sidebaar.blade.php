@@ -1,4 +1,3 @@
-
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
@@ -26,96 +25,101 @@
             </li>
             @endcan
 
+
             {{-- Brands --}}
             @can('brands')
             <li class="nav-item">
-                <a href="#">
-                    <i class="la la-industry"></i>
+                <a href="{{ route('dashboard.brands.index') }}">
+                    <i class="la la-building"></i>
                     <span class="menu-title">Brands</span>
                     <span class="badge badge-info badge-pill float-right mr-2">{{ $brands_count }}</span>
                 </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item" href="{{ route('dashboard.brands.index') }}">
-                            All Brands
-                        </a>
-                    </li>
-                 
-                </ul>
             </li>
             @endcan
+
+
+            {{-- Products --}}
+            <li class="nav-item">
+                <a href="#">
+                    <i class="la la-shopping-bag"></i>
+                    <span class="menu-title">Products</span>
+                </a>
+
+                <ul class="menu-content">
+
+                    @can('products')
+                    <li>
+                        <a class="menu-item" href="{{ route('dashboard.products.create') }}">
+                            <i class="la la-plus"></i>
+                            Products
+                        </a>
+                    </li>
+                    @endcan
+
+                    @can('attributes')
+                    <li>
+                        <a class="menu-item" href="{{ route('dashboard.attributes.index') }}">
+                            <i class="la la-list"></i>
+                            Attributes
+                        </a>
+                    </li>
+                    @endcan
+
+                </ul>
+            </li>
+
 
             {{-- Coupons --}}
             @can('coupons')
             <li class="nav-item">
-                <a href="#">
+                <a href="{{ route('dashboard.coupons.index') }}">
                     <i class="la la-ticket"></i>
                     <span class="menu-title">Coupons</span>
                     <span class="badge badge-info badge-pill float-right mr-2">{{ $coupons_count }}</span>
                 </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item" href="{{ route('dashboard.coupons.index') }}">
-                            All Coupons
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endcan
-            @can('attributes')
+
+
+            {{-- Contacts --}}
+            @can('contact')
             <li class="nav-item">
-                <a href="#">
-                    <i class="la la-ticket"></i>
-                    <span class="menu-title">Attributes</span>
+                <a href="{{ route('dashboard.contacts.index') }}">
+                    <i class="la la-envelope"></i>
+                    <span class="menu-title">Contacts</span>
+                    <span class="badge badge-info badge-pill float-right mr-2">{{ $contacts_count }}</span>
                 </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item" href="{{ route('dashboard.attributes.index') }}">
-                           Attributes
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endcan
+
 
             {{-- FAQs --}}
             @can('faqs')
             <li class="nav-item">
-                <a href="#">
+                <a href="{{ route('dashboard.faqs.index') }}">
                     <i class="la la-question-circle"></i>
                     <span class="menu-title">FAQs</span>
                     <span class="badge badge-info badge-pill float-right mr-2">{{ $Faqs_count }}</span>
                 </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item" href="{{ route('dashboard.faqs.index') }}">
-                            All FAQs
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endcan
+
 
             {{-- Settings --}}
             @can('settings')
             <li class="nav-item">
-                <a href="#">
+                <a href="{{ route('dashboard.settings.index') }}">
                     <i class="la la-cog"></i>
                     <span class="menu-title">Settings</span>
                 </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item" href="{{ route('dashboard.settings.index') }}">
-                            Website Settings
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endcan
+
 
             <li class="navigation-header">
                 <span>Administration</span>
             </li>
+
 
             {{-- Roles --}}
             @can('roles')
@@ -138,6 +142,7 @@
                 </ul>
             </li>
             @endcan
+
 
             {{-- Admins --}}
             @can('admins')
@@ -162,23 +167,18 @@
             </li>
             @endcan
 
+
             {{-- World --}}
             @can('World')
             <li class="nav-item">
-                <a href="#">
+                <a href="{{ route('dashboard.world.countries.index') }}">
                     <i class="la la-globe"></i>
-                    <span class="menu-title">World</span>
+                    <span class="menu-title">Countries</span>
                 </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item" href="{{ route('dashboard.world.countries.index') }}">
-                            Countries
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endcan
 
         </ul>
     </div>
 </div>
+

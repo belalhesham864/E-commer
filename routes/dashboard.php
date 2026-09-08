@@ -10,8 +10,11 @@ use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\FaqController;
+use App\Http\Controllers\Dashboard\ProdutController;
 use App\Http\Controllers\Dashboard\SettingController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\WorldController;
 use App\Notifications\Dashboard\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
@@ -114,7 +117,22 @@ Route::group(
 				Route::resource('attributes', AttributeController::class);
 				Route::get('attributes-all', [AttributeController::class, 'getAll'])->name('attributes.all');
 			});
-
+						##############################Product Routes#######################
+			Route::middleware('can:products')->group(function () {
+				Route::resource('products', ProdutController::class);
+          Route::post('product/status',[ProdutController::class,'changeStatus'])->name('product.status');
+				Route::get('products-all', [ProdutController::class, 'getAll'])->name('products.all');
+				Route::delete('deleteVarient/{id}', [ProdutController::class, 'deleteVarient'])->name('products.deleteVarient');
+			});
+            		##############################User Routes#######################
+	Route::middleware('can:users')->group(function () {
+				Route::resource('users', UserController::class);
+          Route::patch('user/{id}/status',[UserController::class,'changeStatus'])->name('users.status');
+				Route::get('users-all', [UserController::class, 'getAll'])->name('users.all');
+			});
+            Route::middleware('can:contact')->group(function(){
+                Route::get('contacts',[ContactController::class,'index'])->name('contacts.index');
+            });
 		});
 	}
 );

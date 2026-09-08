@@ -14,9 +14,13 @@ class AttributeService
      * Create a new class instance.
      */
     public function __construct(private AttributeRepository $attributeRepository, private AttributeValueRepository $attributeValue) {}
+    public function getAllAttribute(){
+        $attributes = $this->attributeRepository->getAll();
+        return $attributes;
+    }
     public function getAll()
     {
-        $attributes = $this->attributeRepository->getAll();
+        $attributes = self::getAllAttribute();
 
         return   DataTables::of($attributes)
             ->addIndexColumn()
