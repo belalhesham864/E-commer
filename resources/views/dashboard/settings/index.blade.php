@@ -38,6 +38,16 @@
 
                 <div class="card-body">
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger mb-2">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="{{ route('dashboard.settings.update', $setting->id) }}" method="POST"
                         enctype="multipart/form-data" class="settingForm">
 
@@ -272,7 +282,7 @@
                 browseLabel: 'select image',
                 initialPreviewAsData: true,
                 initialPreview: [
-                    "{{ asset('uploads/settings/' . $setting->favicon) }}"
+                    "{{ $setting->favicon }}"
                 ],
             });
         });
@@ -288,7 +298,7 @@
                 browseLabel: 'select image',
                 initialPreviewAsData: true,
                 initialPreview: [
-                    "{{ asset('uploads/settings/' . $setting->logo) }}"
+                    "{{ $setting->logo }}"
                 ],
             });
         });
@@ -301,7 +311,9 @@
         $('#save_btn').removeAttr('hidden');
         $('.settingForm input').removeAttr('readonly');
         $('.settingForm textarea').removeAttr('readonly');
-      $('.settingForm input[type="file"]').prop('disabled', false);
+        $('.settingForm input[type="file"]').prop('disabled', false);
+        $('#faviconimage').fileinput('enable');
+        $('#logoimage').fileinput('enable');
      });
      $(document).on('click','#cancel_btn',function(e){
         e.preventDefault();
@@ -310,7 +322,9 @@
         $('#save_btn').attr('hidden',true);
         $('.settingForm input').attr('readonly',true);
         $('.settingForm textarea').attr('readonly',true);
-$('.settingForm input[type="file"]').prop('disabled', true);
+        $('.settingForm input[type="file"]').prop('disabled', true);
+        $('#faviconimage').fileinput('disable');
+        $('#logoimage').fileinput('disable');
      });
     </script>
 <script>
@@ -326,16 +340,16 @@ $('.settingForm input[type="file"]').prop('disabled', true);
         $('.settingForm').on('input change', 'input, textarea, select', function () {
             let currentData = $('.settingForm').serialize();
 
-if (currentData === originalData) {
-            $('#save_btn').prop('disabled', true);
-        } else {
-            $('#save_btn').prop('disabled', false);
-        }
-            });
+            if (currentData === originalData) {
+                $('#save_btn').prop('disabled', true);
+            } else {
+                $('#save_btn').prop('disabled', false);
+            }
+        });
 
-    $('#logoimage, #faviconimage').on('filebatchselected', function () {
-    $('#save_btn').prop('disabled', false);
-});
+        $('#logoimage, #faviconimage').on('filebatchselected change fileloaded', function () {
+            $('#save_btn').prop('disabled', false);
+        });
 
     });
 </script>

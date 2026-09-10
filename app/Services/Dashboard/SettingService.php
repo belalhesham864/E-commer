@@ -14,18 +14,27 @@ class SettingService
     public function getSetting($id){
         return $this->settingRepository->getSetting($id);
     }
-    public function updateSetting($id,$data){
-        $setting=self::getSetting($id);
-        if(array_key_exists('logo',$data) && $data['logo'] !=null){
-            $this->imageManger->deleteImageFromLocal($setting->logo);
-         $image=$this->imageManger->uploadSingeImage('/',$data['logo'],'settings');
-         $data['logo']=$image;
+    public function updateSetting($id, $data){
+        $setting = self::getSetting($id);
+        
+        if (!empty($data['logo'])) {
+            if ($setting->getRawOriginal('logo')) {
+                $this->imageManger->deleteImageFromLocal('uploads/settings/' . $setting->getRawOriginal('logo'));
+            }
+            $data['logo'] = $this->imageManger->uploadSingeImage('/', $data['logo'], 'settings');
+        } else {
+            unset($data['logo']);
         }
-        if(array_key_exists('favicon',$data) && $data['favicon'] !=null){
-            $this->imageManger->deleteImageFromLocal($setting->favicon);
-         $image=$this->imageManger->uploadSingeImage('/',$data['favicon'],'settings');
-         $data['favicon']=$image;
+
+        if (!empty($data['favicon'])) {
+            if ($setting->getRawOriginal('favicon')) {
+                $this->imageManger->deleteImageFromLocal('uploads/settings/' . $setting->getRawOriginal('favicon'));
+            }
+            $data['favicon'] = $this->imageManger->uploadSingeImage('/', $data['favicon'], 'settings');
+        } else {
+            unset($data['favicon']);
         }
-        return $this->settingRepository->updateSetting($setting,$data);
+
+        return $this->settingRepository->updateSetting($setting, $data);
     }
 }

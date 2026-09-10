@@ -24,10 +24,10 @@ class Setting extends Model
         'site_copyright',
         'promotion_video_url',
 ];
-public function getLogoAttrbuite($value){
-     return 'uploads/settings/'.$value;
+public function getLogoAttribute($value){
+     return $value ? asset('uploads/settings/' . $value) : null;
 }
-public function getFaviconAttrbuite($value){
-     return 'uploads/settings/'.$value;
+public function getFaviconAttribute($value){
+     return $value ? asset('uploads/settings/' . $value) : null;
 }
 }

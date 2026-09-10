@@ -1,21 +1,10 @@
 <?php
 
-use App\Http\Controllers\Dashboard\AdminController;
-use App\Http\Controllers\Dashboard\AttributeController;
+
 use App\Http\Controllers\Dashboard\Auth\LoginController;
-use App\Http\Controllers\Dashboard\Auth\Password\ForgetPasswordController;
-use App\Http\Controllers\Dashboard\Auth\Password\ResetPasswordController;
-use App\Http\Controllers\Dashboard\BrandController;
-use App\Http\Controllers\Dashboard\CouponController;
-use App\Http\Controllers\Dashboard\RoleController;
-use App\Http\Controllers\Dashboard\WelcomeController;
-use App\Http\Controllers\Dashboard\CategoryController;
-use App\Http\Controllers\Dashboard\ContactController;
-use App\Http\Controllers\Dashboard\FaqController;
-use App\Http\Controllers\Dashboard\ProdutController;
-use App\Http\Controllers\Dashboard\SettingController;
-use App\Http\Controllers\Dashboard\UserController;
-use App\Http\Controllers\Dashboard\WorldController;
+use App\Http\Controllers\Dashboard\Auth\Password\{ForgetPasswordController,ResetPasswordController};
+use App\Http\Controllers\Dashboard\{BrandController,CouponController,RoleController,WelcomeController,CategoryController,ContactController,FaqController,ProdutController,UserController,SettingController,WorldController,AdminController,AttributeController};
+
 use App\Notifications\Dashboard\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;

@@ -27,7 +27,7 @@ class ImageManger{
   }
 
     public function generateImageName($image){
-    $fileName=Str::uuid().time().$image->getClientOriginalExtension();
+    $fileName=Str::uuid().time().'.'.$image->getClientOriginalExtension();
     return $fileName;
     }
     public function storeImageInLocal($image,$path,$fileName,$disk){
