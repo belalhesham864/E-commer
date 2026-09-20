@@ -33,7 +33,7 @@
             <div class="card">
 
                 <div class="card-content collapse show">
-                    
+
                     {{-- alert --}}
                     @include('dashboard.includes.toster-error')
                     @include('dashboard.includes.toster-success')
@@ -59,6 +59,7 @@
                                         {{-- <th>Slug</th> --}}
                                         <th>Status</th>
                                         <th>Products Count</th>
+                                        <th>Icon</th>
                                         <th>Created_at</th>
 
                                         <th>Action</th>
@@ -72,6 +73,7 @@
                                         {{-- <th>Slug</th> --}}
                                         <th>Status</th>
                                         <th>Products Count</th>
+                                        <th>Icon</th>
                                         <th>Created_at</th>
 
                                         <th>Action</th>
@@ -125,6 +127,11 @@
                         data: 'products_count',
                     },
                     {
+                        data: 'icon',
+                        searchable: false,
+                        orderable: false
+                    },
+                    {
                         data: 'created_at',
                         searchable: false,
                         orderable: false
@@ -144,4 +151,7 @@
             });
         });
     </script>
+
+
+
 @endpush

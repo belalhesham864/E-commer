@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('subject');
             $table->text('message');
             $table->boolean('is_read')->default(false);
+              $table->boolean('replay_status')->default(0);
+
+             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

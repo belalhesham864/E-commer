@@ -88,7 +88,7 @@
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
 
-                    
+
                                                 </div>
                                                 </div>
 
@@ -98,7 +98,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                              
+
                                                            <input @checked($brand->status==1) type="radio" name="status" id="status"
                                                               value="1" >
                                                         <label for="status">Active</label>
@@ -111,7 +111,7 @@
                                             </div>
 
                                         </div>
-                                      
+
                                     </div>
 
 
@@ -145,20 +145,20 @@
         $('#singlimage-edit').fileinput({
     theme: 'fa5',
               showCancel: true,
-              
+
                  maxFileCount: 1,
     showUpload: false,
-    showRemove: true,        
+    showRemove: true,
     enableResumableUpload: false,
-    browseLabel: 'select image', 
+    browseLabel: 'select image',
     initialPreviewAsData: true,
     initialPreview:[
-    "{{ asset($brand->logo) }}" 
+    "{{ asset($brand->logo) }}"
     ],
         });
 
     });
 </script>
 
-    
+
 @endpush

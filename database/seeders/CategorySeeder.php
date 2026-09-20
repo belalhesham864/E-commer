@@ -13,30 +13,123 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-      $data=[
-        [
-            'name'=>['en'=>'category','ar'=>'التصنيف'],
-            'status'=>1,
-            'parent'=>null
-        ],
-        [
-            'name'=>['en'=>'category2','ar'=>'2التصنيف'],
-            'status'=>1,
-            'parent'=>null
-        ],
-        [
-            'name'=>['en'=>'category3','ar'=>'التصنيف3'],
-            'status'=>1,
-            'parent'=>null
-        ],
-        [
-            'name'=>['en'=>'category4','ar'=>'4التصنيف'],
-            'status'=>1,
-            'parent'=>null
-        ],
-      ];
-      foreach($data as $category){
-        category::create($category);
-      }
+        $data = [
+
+            [
+                'name' => [
+                    'en' => 'Dresses',
+                    'ar' => 'فساتين',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'dresses.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Leather Bags',
+                    'ar' => 'حقائب جلدية',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'bags.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Sweaters',
+                    'ar' => 'بلوفرات',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'sweaters.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Boots',
+                    'ar' => 'أحذية بوت',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'shoes.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Gift for Him',
+                    'ar' => 'هدايا للرجال',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'gift.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Sneakers',
+                    'ar' => 'أحذية رياضية',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'sneakers.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Watch',
+                    'ar' => 'ساعات',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'watch.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Gold Rings',
+                    'ar' => 'خواتم ذهب',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'ring.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Cap',
+                    'ar' => 'كاب',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'cap.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Sunglass',
+                    'ar' => 'نظارات شمسية',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'glass.webp',
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Baby Shop',
+                    'ar' => 'مستلزمات الأطفال',
+                ],
+                'status' => 1,
+                'parent' => null,
+                'icon' => 'baby.webp',
+            ],
+
+
+
+        ];
+        foreach ($data as $category) {
+            category::create($category);
+        }
     }
 }

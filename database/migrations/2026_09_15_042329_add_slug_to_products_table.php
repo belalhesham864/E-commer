@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_active')->default(true);
-            $table->integer('num_of_order')->default(0);
+        Schema::table('products', function (Blueprint $table) {
+                        $table->string('slug')->after('name')->unique();
+
         });
     }
 
@@ -22,9 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_active');
-            $table->dropColumn('num_of_order');
+        Schema::table('products', function (Blueprint $table) {
+            //
         });
     }
 };

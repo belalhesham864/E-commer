@@ -194,7 +194,7 @@
     </div>
     </div>
     <div class="header-user">
-    <a href="user-profile.html">
+    <a href="{{ route('profile.index') }}">
     <span>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-current">
     <path fill="none" d="M0 0h24v24H0z"></path>
@@ -845,7 +845,7 @@ Baby Shop
 </div>
 </li>
 <li>
-<a href="#">
+<a href="javascript:void(0)">
 <span class="list-text">Pages</span>
 <span>
 <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -861,16 +861,18 @@ Baby Shop
 </span>
 </a>
 <ul class="header-sub-menu">
-<li><a href="product-info.html">Product-details</a></li>
-<li><a href="privacy.html">Privacy Policy</a></li>
-<li><a href="terms.html">Terms & Condition</a></li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="product-sidebar.html">Shop Category Icon</a></li>
-<li><a href="product-sidebar.html">Shop List View</a></li>
+    <li><a href="{{ route('website.faq') }}">FAQ</a></li>
+
+@if($pages->count()>0)
+@foreach ($pages as $page )
+<li><a href="{{ route('website.page',$page->slug) }}">{{ $page->title }}</a></li>
+
+@endforeach
+@endif
 </ul>
 </li>
 <li>
-<a href="about.html">
+<a href="{{ route('about-us') }}">
 <span class="list-text">About</span>
 </a>
 </li>

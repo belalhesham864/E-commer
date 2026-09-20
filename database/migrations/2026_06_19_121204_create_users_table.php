@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('status')->default(1);
             $table->string('image')->nullable();
+            $table->integer('num_of_order')->default(0);
 
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
             $table->foreignId('governrate_id')->constrained('governrates')->cascadeOnDelete();

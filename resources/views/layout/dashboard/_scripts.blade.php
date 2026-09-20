@@ -24,12 +24,12 @@
         $('#singlimage').fileinput({
     theme: 'fa5',
               showCancel: true,
-              
+
                  maxFileCount: 1,
     showUpload: false,
-    showRemove: true,        
+    showRemove: true,
     enableResumableUpload: false,
-    browseLabel: 'select image', 
+    browseLabel: 'select image',
         });
 
     });
@@ -62,10 +62,10 @@
       cancelButtonText: "No, cancel!",
       reverseButtons: true
     }).then((result) => {
-      if (result.isConfirmed) 
+      if (result.isConfirmed)
       form.submit(),
       swalWithBootstrapButtons.fire({
-        
+
         title: "Deleted!",
         text: "Your file has been deleted.",
         icon: "success"
@@ -86,7 +86,7 @@
 $(document).on('click','.change_status',function(e){
   e.preventDefault();
  let form=$(this).closest('form');
-  
+
 Swal.fire({
   title: "Are you sure?",
   text: "Do you want to change the status of this ?",

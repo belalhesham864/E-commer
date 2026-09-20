@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\category;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,7 +14,9 @@ class HomeController extends Controller
      */
      public function index()
     {
-        return view('website.index');
+        $sliders=Slider::get();
+        $categories=category::get();
+        return view('website.index',compact('sliders','categories'));
     }
 
     /**

@@ -51,7 +51,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="userinput1"> Name English</label>
-                                                <input type="text" 
+                                                <input type="text"
                                                     id="userinput1" class="form-control border-primary" placeholder="Name"
                                                     name="name[en]"
                                                     value="{{ old('name[en]') }}" >
@@ -64,7 +64,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="userinput1"> Name Arabic</label>
-                                                <input type="text" 
+                                                <input type="text"
                                                     id="userinput1" class="form-control border-primary" value="{{ old('name[ar]') }}" placeholder="Name"
                                                     name="name[ar]">
                                                 @error('name.ar')
@@ -109,6 +109,18 @@
                                                 </select>
                                                 @error('parent')
                                                     <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="userinput1"> Category Icon</label>
+                                                <input type="file"
+                                                    id="singlimage" class="form-control border-primary" placeholder="icon"
+                                                    name="icon">
+                                                @error('icon')
+                                                    <div class="'text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
 

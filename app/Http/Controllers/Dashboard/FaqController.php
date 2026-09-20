@@ -15,6 +15,16 @@ class FaqController extends Controller
         $faqs=$this->faqService->getFaqs();
         return view('dashboard.faqs.index',compact('faqs'));
     }
+    public function getFaqsquestion()
+    {
+     return $this->faqService->getFaqsquestion();
+
+
+    }
+    public function question()
+    {
+        return view('dashboard.faqs.quetion');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -83,5 +93,14 @@ class FaqController extends Controller
 
         }
         return response()->json(['status'=>true,'msg'=>'faqs Deleted success'],200);
+    }
+    public function delete(string $id)
+    {
+         $faqs=$this->faqService->DeleteFaqQuetion($id);
+           if(!$faqs){
+           return response()->json(['status'=>false,'msg'=>'error please try again latter'],404);
+
+        }
+        return response()->json(['status'=>true,'msg'=>'faqs Question Deleted success'],200);
     }
 }

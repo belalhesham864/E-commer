@@ -36,7 +36,7 @@ class SettingRequest extends FormRequest
             'logo'                => 'nullable|image|mimes:jpg,jpeg,png,svg,webp|max:2048',
             'favicon'             => 'nullable|image|mimes:ico,png,jpg,jpeg|max:1024',
             'site_copyright'      => 'required|string|max:255',
-            'promotion_video_url' => 'required|url|max:1000',
+            'promotion_video_url' => 'required|max:1000',
         ];
     }
 }

@@ -44,7 +44,7 @@
                         <div class="card-body">
                             @include('dashboard.includes.valditionerror')
                             <form class="form" action="{{ route('dashboard.categories.update', $category->id) }}"
-                                method="post">
+                                method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-body">
@@ -114,6 +114,19 @@
                                             </div>
 
                                         </div>
+                                                 <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="userinput1"> Category Icon</label>
+                                                <input type="file"
+                                                    id="singlimageEdit" class="form-control border-primary" placeholder="icon"
+                                                    name="icon">
+                                                @error('icon')
+                                                    <div class="'text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+
                                     </div>
 
 
@@ -141,3 +154,27 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(function () {
+        $('#singlimageEdit').fileinput({
+            theme: 'fa5',
+            showCancel: true,
+            maxFileCount: 1,
+            showUpload: false,
+            showRemove: true,
+            enableResumableUpload: false,
+            browseLabel: 'select image',
+            initialPreviewAsData: true,
+            initialPreview: [
+                "{{ asset($category->icon) }}"
+            ],
+            initialPreviewConfig: [
+                { caption: "{{ $category->icon }}" }
+            ]
+        });
+    });
+</script>
+@endpush
+

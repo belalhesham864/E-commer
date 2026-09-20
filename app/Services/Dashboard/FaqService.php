@@ -3,7 +3,7 @@
 namespace App\services\Dashboard;
 
 use App\Repositories\Dashboard\FaqRepository;
-
+use Yajra\DataTables\DataTables;
 class FaqService
 {
     /**
@@ -14,9 +14,24 @@ class FaqService
     {
         return $this->faqRepository->getFaqs();
     }
+    public function getFaqsquestion()
+    {
+        $faqQuetions= $this->faqRepository->getFaqsquestion();
+         return DataTables::of($faqQuetions)
+               ->addIndexColumn()
+     ->addColumn('action',function($faqQuetion){
+    return view('dashboard.faqs.action',compact('faqQuetion'));
+     })
+            ->make(true);
+
+    }
     public function findFaq($id)
     {
         return $this->faqRepository->findFaq($id);
+    }
+    public function findFaqQuetion($id)
+    {
+        return $this->faqRepository->findFaqQuetion($id);
     }
     public function create($data)
     {
@@ -32,5 +47,10 @@ class FaqService
     {
         $Faq = self::findFaq($id);
         return $this->faqRepository->Delete($Faq);
+    }
+    public function DeleteFaqQuetion($id)
+    {
+        $faqQuetion = self::findFaqQuetion($id);
+        return $this->faqRepository->DeleteFaqQuetion($faqQuetion);
     }
 }

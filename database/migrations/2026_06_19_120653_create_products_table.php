@@ -34,7 +34,7 @@ return new class extends Migration
             $table->boolean('manage_stock')->default(0);
             $table->integer('quantity')->nullable(); // if has veriants it well be null
             $table->integer('available_in_stock')->default(1);
- 
+
             $table->foreignId('category_id')
                 ->constrained('categories')
                 ->onDelete('cascade');

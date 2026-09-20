@@ -94,26 +94,70 @@
 
 
             {{-- FAQs --}}
-            @can('faqs')
-            <li class="nav-item">
-                <a href="{{ route('dashboard.faqs.index') }}">
+
+               <li class="nav-item">
+                <a href="#">
                     <i class="la la-question-circle"></i>
-                    <span class="menu-title">FAQs</span>
-                    <span class="badge badge-info badge-pill float-right mr-2">{{ $Faqs_count }}</span>
+                    <span class="menu-title">FAQS</span>
                 </a>
+
+                <ul class="menu-content">
+
+                    @can('faqs')
+                    <li>
+                        <a class="menu-item" href="{{  route('dashboard.faqs.index') }}">
+                            <i class="la la-question-circle"></i>
+                            FAQS
+                        </a>
+                    </li>
+
+
+
+                    <li>
+                        <a class="menu-item" href="{{ route('dashboard.faqs.question') }}">
+                            <i class="la la-list"></i>
+                            FAQS Question
+                        </a>
+                    </li>
+                    @endcan
+
+                </ul>
             </li>
-            @endcan
 
 
             {{-- Settings --}}
-            @can('settings')
-            <li class="nav-item">
-                <a href="{{ route('dashboard.settings.index') }}">
+
+
+
+        <li class="nav-item">
+                <a href="#">
                     <i class="la la-cog"></i>
-                    <span class="menu-title">Settings</span>
+                    <span class="menu-title">settings</span>
                 </a>
+
+                <ul class="menu-content">
+
+                    @can('settings')
+                    <li>
+                        <a class="menu-item" href="{{ route('dashboard.settings.index') }}">
+                            <i class="la la-cog"></i>
+                            Settings
+                        </a>
+                    </li>
+
+                    @endcan
+                    @can('sliders')
+
+                    <li>
+                        <a class="menu-item" href="{{ route('dashboard.sliders.index') }}">
+                            <i class="la la-list"></i>
+                            Sliders
+                        </a>
+                    </li>
+                    @endcan
+
+                </ul>
             </li>
-            @endcan
 
 
             <li class="navigation-header">

@@ -10,7 +10,7 @@ class category extends Model
 {
         use HasTranslations,Sluggable;
 
-    protected $fillable = ['name','slug','status','parent'];
+    protected $fillable = ['name','slug','status','parent','icon'];
         public array $translatable = ['name'];
         protected $table='categories';
           public function sluggable(): array
@@ -37,6 +37,11 @@ class category extends Model
     public function getCreatedAtAttribute($value){
         return date('d/m/Y h:i A',strtotime($value));
     }
+public function getIconAttribute($value)
+{
+    return $value ? 'uploads/categories/' . $value : null;
+}
+
     public function products(){
         return $this->hasMany(Product::class,'category_id');
     }
@@ -48,4 +53,3 @@ class category extends Model
     }
 
 }
-  

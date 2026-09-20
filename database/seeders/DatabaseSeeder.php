@@ -17,17 +17,21 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-     $this->call([
-        RoleSeeder::class,
-        AdminSeeder::class,
-        CounterySeeder::class,
-        GovernrateSeeder::class,
-        citySeeder::class,
-        CategorySeeder::class,
-        BrandSeeder::class,
-        couponSeeder::class,
-        FaqSeeder::class,
-        AttributeSeeder::class,
-          ]);
+        $this->call([
+            RoleSeeder::class,
+            AdminSeeder::class,
+            CounterySeeder::class,
+            GovernrateSeeder::class,
+            citySeeder::class,
+            UserSeeder::class,
+            CategorySeeder::class,
+            BrandSeeder::class,
+            AttributeSeeder::class,
+            couponSeeder::class,
+            FaqSeeder::class,
+            ContactSeeder::class,
+            SliderSeeder::class,
+            PageSeeder::class,
+        ]);
     }
 }

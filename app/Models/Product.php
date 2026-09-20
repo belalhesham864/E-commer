@@ -4,10 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory,Sluggable;
+              public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
     public $fillable = ['name','small_desc','desc','status','sku','available_for','views','has_variants','price','has_discount'
     ,'discount','start_discount','end_discount','manage_stock','quantity','available_in_stock','category_id','brand_id'];
     public function productVarients(){

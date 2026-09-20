@@ -1,10 +1,10 @@
 <?php
 
 
+use App\Http\Controllers\Dashboard\{BrandController,CouponController,RoleController,WelcomeController,CategoryController,ContactController,FaqController,ProdutController,UserController,SettingController,WorldController,AdminController,AttributeController, PagesController};
 use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\{ForgetPasswordController,ResetPasswordController};
-use App\Http\Controllers\Dashboard\{BrandController,CouponController,RoleController,WelcomeController,CategoryController,ContactController,FaqController,ProdutController,UserController,SettingController,WorldController,AdminController,AttributeController};
-
+use App\Http\Controllers\Dashboard\sliderController;
 use App\Notifications\Dashboard\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -92,8 +92,12 @@ Route::group(
 			Route::middleware('can:faqs')->group(function () {
 				Route::resource('faqs', FaqController::class);
 				Route::get('faqs-all', [FaqController::class, 'getAll'])->name('faqs.all');
+				Route::get('faq-question', [FaqController::class, 'question'])->name('faqs.question');
+				Route::get('faq-question-all', [FaqController::class, 'getFaqsquestion'])->name('faqs.question-all');
+                Route::delete('faq-question/{id}', [FaqController::class, 'delete'])->name('faq.question.delete');
+
 			});
-			##############################Faqs Routes#######################
+			##############################Setting Routes#######################
 			Route::controller(SettingController::class)->middleware('can:settings')->prefix('settings')->name('settings.')->group(function () {
 
 
@@ -101,6 +105,8 @@ Route::group(
 
 				Route::PUT('/update/{id}', 'updateSetting')->name('update');
 			});
+              Route::resource('sliders', sliderController::class);
+				Route::get('slider-all', [sliderController::class, 'getAll'])->name('sliders.all');
 						##############################Attribute Routes#######################
 			Route::middleware('can:attributes')->group(function () {
 				Route::resource('attributes', AttributeController::class);
@@ -121,6 +127,11 @@ Route::group(
 			});
             Route::middleware('can:contact')->group(function(){
                 Route::get('contacts',[ContactController::class,'index'])->name('contacts.index');
+            });
+            Route::middleware('can:pages')->group(function(){
+            	Route::resource('pages', PagesController::class);
+            Route::get('pages-all', [PagesController::class, 'getAll'])->name('pages.all');
+Route::delete('pages/{page}/delete-image', [PagesController::class, 'deleteImage'])->name('pages.deleteImage');
             });
 		});
 	}

@@ -85,7 +85,7 @@ class ProductServices
         }
         return $image;
     }
-    public function deleteProductImage($id, $fileName)
+public function deleteProductImage($id, $fileName)
     {
         $this->imageManger->deleteImageFromLocal('uploads/products' . '/' . $fileName);
         $image = self::findProductImage($id);

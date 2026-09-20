@@ -8,6 +8,7 @@ use App\Models\category;
 use App\Models\Contact;
 use App\Models\Coupon;
 use App\Models\Faqs;
+use App\Models\page;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
@@ -67,6 +68,12 @@ class ViewServicePorvider extends ServiceProvider
         'Faqs_count'=>Cache::get('Faqs_count'),
         'contacts_count'=>Cache::get('contacts_count'),
       ]);
+       });
+       view()->composer('website.*',function(){
+         $pages=page::isActive()->select('id','title','slug')->get();
+         view()->share([
+            'pages'=>$pages
+         ]);
        });
        $setting=$this->firstOrCreateSetting();
        view()->share([

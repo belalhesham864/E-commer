@@ -12,25 +12,26 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
         then:function(){
            Route::middleware('web')
-         
+
            ->group(base_path('routes/dashboard.php'));
         }
     )
-    
+
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo(function(){
             if(request()->is('*/dashboard/*')){
                 return route('dashboard.login');
             }
-              return route('login'); 
+              return route('login');
         });
         $middleware->redirectUsersTo(function(){
               if(request()->is('*/dashboard/login')|| request()->is('*/dashboard/register')){
                 return route('dashboard.welcome');
             }else{
-                return route('/');
+                return route('Home.index');
             }
         });
+
               $middleware->alias([
             /**** OTHER MIDDLEWARE ALIASES ****/
             'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
