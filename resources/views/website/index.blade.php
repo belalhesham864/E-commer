@@ -141,17 +141,17 @@
         </section>
     @endif
 
-    @if ($newArriavle->count() > 0)
+    @if ($HomePageProduct['newArriavle']->count() > 0)
         <section class="product arrival">
             <div class="container">
                 <div class="section-title">
                     <h5>NEW ARRIVALS</h5>
-                    <a href="product-sidebar.html" class="view">View All</a>
+                    <a href="{{ route('product.by.type','New-Arriavle') }}" class="view">View All</a>
                 </div>
                 <div class="arrival-section">
                     <div class="row g-5">
 
-                        @forelse ($newArriavle as $product)
+                        @forelse ($HomePageProduct['newArriavle'] as $product)
                             <div class="col-lg-3 col-sm-6">
                                 <div class="product-wrapper" data-aos="fade-up">
                                     <div class="product-img">
@@ -287,34 +287,34 @@
     @endif
 
 
-    @if ($flashProductTimer->count() > 0)
+    @if ($HomePageProduct['flashProductTimer']->count() > 0)
         <section class="product flash-sale">
             <div class="container">
                 <div class="section-title">
                     <h5>Flash Sale</h5>
                     <div class="countdown-section">
                         <div class="countdown-items">
-                            <span id="day" class="number" style="color: red;">0</span>
+                            <span id="day" class="number" style="color: red;"></span>
                             <span class="text">Days</span>
                         </div>
                         <div class="countdown-items">
-                            <span id="hour" class="number" style="color: skyblue;">0</span>
+                            <span id="hour" class="number" style="color: skyblue;"></span>
                             <span class="text">Hours</span>
                         </div>
                         <div class="countdown-items">
-                            <span id="minute" class="number" style="color: green;">0</span>
+                            <span id="minute" class="number" style="color: green;"></span>
                             <span class="text">Minutes</span>
                         </div>
                         <div class="countdown-items">
-                            <span id="second" class="number" style="color: red;">0</span>
+                            <span id="second" class="number" style="color: red;"></span>
                             <span class="text">seconds</span>
                         </div>
                     </div>
-                    <a href="flash-sale.html" class="view">View All</a>
+                    <a href="{{ route('product.by.type','Flash-Timer') }}" class="view">View All</a>
                 </div>
                 <div class="flash-sale-section">
                     <div class="row g-5">
-                        @foreach ($flashProductTimer as $product)
+                        @foreach ($HomePageProduct['flashProductTimer'] as $product)
                             <div class="col-lg-3 col-md-6">
                                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
                                     <div class="product-img">
@@ -1716,16 +1716,16 @@
     </section>
 
 
-    @if ($flashProduct->count() > 0)
+    @if ($HomePageProduct['flashProduct']->count() > 0)
         <section class="product best-product">
             <div class="container">
                 <div class="section-title">
                     <h5>Flash Sale</h5>
-                    <a href="flash-sale.html" class="view">View All</a>
+                    <a href="{{ route('product.by.type','Flash-Product') }}" class="view">View All</a>
                 </div>
                 <div class="best-product-section">
                     <div class="row g-4">
-                        @foreach ($flashProduct as $product)
+                        @foreach ($HomePageProduct['flashProduct'] as $product)
                             <div class="col-xl-2 col-md-4">
                                 <div class="product-wrapper" data-aos="fade-up">
                                     <div class="product-img">
@@ -1785,33 +1785,7 @@
     @endif
 @endsection
 @push('js')
+<script src="{{ asset('asset/website/assets/js/count.js') }}"></script>
 
-<script>
-    function startCountdown(){
-        const now=new Date();
-        const endOfDay=new Date();
-      endOfDay.setHours(23,59,59,999);
-
-      const diff=endOfDay-now;
-      if(diff<0){
-        $('#day,#hour,#minute,#second').text("0");
-        return;
-      }
-
-      const totalSecound=Math.floor(diff/1000);
-      const hours=Math.floor((totalSecound%86400)/3600);
-      const minutes=Math.floor((totalSecound%3600)/60);
-      const secounds=Math.floor(totalSecound%60);
-
-      $('#day').text('0');
-      $('#hour').text(String(hours).padStart(2,'0'));
-      $('#minute').text(String(minutes).padStart(2,'0'));
-      $('#second').text(String(secounds).padStart(2,'0'));
-    }
-    $(function(){
-        startCountdown();
-        setInterval(startCountdown,1000);
-    });
-</script>
 
 @endpush

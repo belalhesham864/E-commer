@@ -45,8 +45,9 @@ Route::group(
             Route::get('', 'index')->name('index');
             Route::get('/{slug}/products', 'getProductByCategory')->name('product');
         });
-     Route::get('product/{slug}',[ProductController::class,'show'])->name('product.show');
-        Route::get('page/{slug}', [pageController::class, 'index'])->name('website.page');
+     Route::get('product/show/{slug}',[ProductController::class,'show'])->name('product.show');
+     Route::get('page/{slug}', [pageController::class, 'index'])->name('website.page');
+     Route::get('product/{type}',[ProductController::class,'getProductByType'])->name('product.by.type');
 
         // ############################# Auth (Guests Only) #######################
         Route::middleware('guest')->group(function () {

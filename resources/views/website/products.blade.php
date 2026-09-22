@@ -1,8 +1,36 @@
 @extends('layout.website.app')
 @section('title','Products')
 @section('body')
-<section class="product product-sidebar footer-padding">
+
+@if($products->count()>0)
+
+<section class="product product-sidebar  @if($flash_timer) flash-sale @endif footer-padding">
 <div class="container">
+    @if($flash_timer)
+        <div class="section-title">
+                    <h5>Flash Sale</h5>
+                    <div class="countdown-section">
+                        <div class="countdown-items">
+                            <span id="day" class="number" style="color: red;"></span>
+                            <span class="text">Days</span>
+                        </div>
+                        <div class="countdown-items">
+                            <span id="hour" class="number" style="color: skyblue;"></span>
+                            <span class="text">Hours</span>
+                        </div>
+                        <div class="countdown-items">
+                            <span id="minute" class="number" style="color: green;"></span>
+                            <span class="text">Minutes</span>
+                        </div>
+                        <div class="countdown-items">
+                            <span id="second" class="number" style="color: red;"></span>
+                            <span class="text">seconds</span>
+                        </div>
+                    </div>
+                                        <a href="#" ></a>
+
+                </div>
+@endif
 <div class="row g-5">
 <div class="col-lg-3">
 
@@ -32,7 +60,7 @@
 </div>
     @endif
 
-@forelse ($products as $product )
+@foreach ($products as $product )
 <div class="col-lg-4 col-sm-6">
 <div class="product-wrapper" data-aos="fade-up">
 <div class="product-img">
@@ -115,7 +143,22 @@
 </div>
 </div>
 </div>
-@empty
+
+@endforeach
+
+<div class="col-12">
+    <div class="pagination-wrapper">
+        {{ $products->links() }}
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+@else
+
   <section class="blog about-blog footer-padding">
 <div class="container">
 
@@ -130,21 +173,17 @@
 </div>
 </div>
 </section>
-@endforelse
 
-<div class="col-12">
-    <div class="pagination-wrapper">
-        {{ $products->links() }}
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+@endif
 @endsection
+
+
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('asset/website/css/pagiation.css') }}">
+@endpush
+@push('js')
+@if($flash_timer)
+<script src="{{ asset('asset/website/assets/js/count.js') }}"></script>
+@endif
 @endpush

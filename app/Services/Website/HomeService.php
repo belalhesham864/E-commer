@@ -39,7 +39,7 @@ public function __construct(private ProductService $productService){}
         ->latest()
         ->select('id','name','slug','price','discount','has_variants','has_discount','brand_id','category_id')
         ->where('brand_id',$brand_id)
-        ->paginate(1);
+        ->paginate(4);
 
         return $products;
     }
@@ -51,20 +51,19 @@ public function __construct(private ProductService $productService){}
         ->latest()
         ->select('id','name','slug','price','discount','has_variants','has_discount','brand_id','category_id')
 
-        ->paginate(1);
+        ->paginate(4);
         return $products;
     }
-    public function newArriavleProduct($limit = null)
+
+
+    public function getHomePageProduct($limitArriavle=null,$limitFlash=null,$limitflashtimer=null):array
     {
-       return $this->productService->newArriavleProduct($limit);
+        return [
+            'newArriavle'=>$this->productService->newArriavleProduct($limitArriavle),
+            'flashProduct'=>$this->productService->flashProduct($limitFlash),
+            'flashProductTimer'=>$this->productService->flashProductTimer($limitflashtimer),
+        ];
     }
-    public function flashProduct($limit = null)
-    {
-       return $this->productService->flashProduct($limit);
-    }
-    public function flashProductTimer($limit = null)
-    {
-       return $this->productService->flashProductTimer($limit);
-    }
+
 
 }
