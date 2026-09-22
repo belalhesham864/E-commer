@@ -19,7 +19,7 @@ class HomeController extends Controller
         $Brands=$this->homeService->getBrands(12);
         $newArriavle=$this->homeService->newArriavleProduct(8);
         $flashProduct=$this->homeService->flashProduct(12);
-        $flashProductTimer=$this->homeService->flashProductTimer(8);
+        $flashProductTimer=$this->homeService->flashProductTimer(4);
         return view('website.index',compact('sliders','categories','Brands','newArriavle','flashProduct','flashProductTimer'));
     }
 
