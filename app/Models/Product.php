@@ -55,6 +55,10 @@ class Product extends Model
     {
         return $this->has_variants==0 ? number_format($value,2) : 'Yes Variantes';
     }
+        public function scopeIsActive($q)
+    {
+        return $q->where('status', 1);
+    }
       public function getQuantityAttribute($value)
     {
         return $this->has_variants==0 ? $value : 'Yes Variantes';
@@ -65,5 +69,12 @@ class Product extends Model
     public function status(){
         return $this->status==1 ? 'Active': 'DisActive';
     }
+    public function getPriceAfterDiscount(){
+        if($this->has_discount){
+            return $this->price - $this->discount;
+        }
+        return $this->price;
+    }
+
 
 }

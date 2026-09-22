@@ -12,5 +12,7 @@ class ProductImage extends Model
            public function Product(){
         return $this->belongsTo(Product::class);
     }
- 
+  public function getFileNameAttribute($value){
+     return $value ? 'uploads/products/' . $value : null;
+  }
 }

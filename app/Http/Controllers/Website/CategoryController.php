@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers\Website;
+
+use App\Http\Controllers\Controller;
+use App\Services\Website\HomeService;
+use Illuminate\Http\Request;
+
+class CategoryController extends Controller
+{
+    public function __construct(private HomeService $homeService){}
+    public function index(){
+        $categories=$this->homeService->getCategories();
+      return view('website.categories',compact('categories'));
+
+    }
+    public function getProductByCategory($slug){
+         $products=$this->homeService->getProductByCategory($slug);
+         
+           return view('website.products',compact('products'));
+
+    }
+}

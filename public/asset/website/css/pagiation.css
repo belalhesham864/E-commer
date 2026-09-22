@@ -1,0 +1,77 @@
+
+    .pagination-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 4rem 0 2rem;
+    }
+
+    .pagination-wrapper .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex-wrap: wrap;
+    }
+
+    .pagination-wrapper .pagination .page-item {
+        margin: 0;
+    }
+
+    .pagination-wrapper .pagination .page-item .page-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        height: 42px;
+        padding: 0 14px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: 'Jost', 'Poppins', sans-serif;
+        color: #4b5563;
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+        transition: all 0.25s ease-in-out;
+        text-decoration: none;
+    }
+
+    .pagination-wrapper .pagination .page-item .page-link:hover {
+        color: #ae1c9a;
+        background-color: #fdf2f8;
+        border-color: #ae1c9a;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(174, 28, 154, 0.18);
+    }
+
+    .pagination-wrapper .pagination .page-item.active .page-link {
+        color: #ffffff !important;
+        background-color: #ae1c9a !important;
+        border-color: #ae1c9a !important;
+        font-weight: 700;
+        box-shadow: 0 4px 14px rgba(174, 28, 154, 0.35);
+        transform: scale(1.05);
+    }
+
+    .pagination-wrapper .pagination .page-item.disabled .page-link {
+        color: #9ca3af !important;
+        background-color: #f9fafb !important;
+        border-color: #e5e7eb !important;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+        opacity: 0.6;
+    }
+
+    .pagination-wrapper .pagination .page-item:first-child .page-link,
+    .pagination-wrapper .pagination .page-item:last-child .page-link {
+        border-radius: 10px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        padding: 0 16px;
+    }

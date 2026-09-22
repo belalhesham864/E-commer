@@ -13,56 +13,20 @@ class BrandSeeder extends Seeder
 
     public function run(): void
     {
-        $brands = [
-    [
-        'name' => ['en' => 'Apple', 'ar' => 'آبل'],
-        'logo' => 'https://logos-world.net/wp-content/uploads/2020/04/Apple-Logo.png',
-    ],
-    [
-        'name' => ['en' => 'Google', 'ar' => 'جوجل'],
-        'logo' => 'https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png',
-    ],
-    [
-        'name' => ['en' => 'Samsung', 'ar' => 'سامسونج'],
-        'logo' => 'https://logos-world.net/wp-content/uploads/2020/04/Samsung-Logo.png',
-    ],
-    [
-        'name' => ['en' => 'Xiaomi', 'ar' => 'شاومي'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg',
-    ],
-    [
-        'name' => ['en' => 'OnePlus', 'ar' => 'ون بلس'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/commons/a/ab/OnePlus_logo.svg',
-    ],
-    [
-        'name' => ['en' => 'Oppo', 'ar' => 'أوبو'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/commons/6/6e/OPPO_LOGO_2019.svg',
-    ],
-    [
-        'name' => ['en' => 'Realme', 'ar' => 'ريلمي'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Realme_logo.svg',
-    ],
-    [
-        'name' => ['en' => 'Huawei', 'ar' => 'هواوي'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/en/0/04/Huawei_Standard_logo.svg',
-    ],
-    [
-        'name' => ['en' => 'Lenovo', 'ar' => 'لينوفو'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg',
-    ],
-    [
-        'name' => ['en' => 'Dell', 'ar' => 'ديل'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg',
-    ],
-    [
-        'name' => ['en' => 'HP', 'ar' => 'إتش بي'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg',
-    ],
-    [
-        'name' => ['en' => 'Asus', 'ar' => 'أسوس'],
-        'logo' => 'https://upload.wikimedia.org/wikipedia/commons/2/2e/ASUS_Logo.svg',
-    ],
-];
+       $brands = [
+            ['name' => ['en' => 'Palxohs',  'ar' => 'بالكسوهس'],   'logo' => 'Palxohs.webp'],
+            ['name' => ['en' => 'Oyarx',    'ar' => 'أويارإكس'],   'logo' => 'Oyarx.webp'],
+            ['name' => ['en' => 'Aplio',    'ar' => 'أبليو'],      'logo' => 'Aplio.webp'],
+            ['name' => ['en' => 'Toyuos',   'ar' => 'تويوس'],      'logo' => 'Toyuos.webp'],
+            ['name' => ['en' => 'Maxtoxie', 'ar' => 'ماكستوكسي'],  'logo' => 'Maxtoxie.webp'],
+            ['name' => ['en' => 'Swaariy',  'ar' => 'سواري'],      'logo' => 'Swaariy.webp'],
+            ['name' => ['en' => 'Roxxye',   'ar' => 'روكسي'],      'logo' => 'Roxxye.webp'],
+            ['name' => ['en' => 'Sidkkow',  'ar' => 'سيدكاو'],     'logo' => 'Sidkkow.webp'],
+            ['name' => ['en' => 'Pixxley',  'ar' => 'بيكسلي'],     'logo' => 'Pixxley.webp'],
+            ['name' => ['en' => 'Jaksey',   'ar' => 'جاكسي'],      'logo' => 'Jaksey.webp'],
+            ['name' => ['en' => 'Odsxym',   'ar' => 'أودسيم'],     'logo' => 'Odsxym.webp'],
+            ['name' => ['en' => 'Paparic',  'ar' => 'باباريك'],    'logo' => 'Paparic.webp'],
+        ];
 
 foreach ($brands as $brand) {
     Brand::create($brand);

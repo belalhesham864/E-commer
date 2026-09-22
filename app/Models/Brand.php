@@ -39,11 +39,13 @@ class Brand extends Model
         }
         return $this->status == 1 ? 'Active' : 'InActive';
     }
+    public function getLogoAttribute($value)
+{
+    return $value ? 'uploads/brands/' . $value : null;
+}
     public function getCreatedAtAttribute($value)
     {
         return date('d/m/Y h:m A', strtotime($value));
     }
-    public function getLogoAttribute($value){
-        return 'uploads/brands/'.$value;
-    }
+
 }

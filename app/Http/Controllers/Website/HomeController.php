@@ -5,18 +5,22 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\category;
 use App\Models\Slider;
+use App\services\website\CategoryService;
+use App\Services\Website\HomeService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(private HomeService $homeService){}
      public function index()
     {
-        $sliders=Slider::get();
-        $categories=category::get();
-        return view('website.index',compact('sliders','categories'));
+        $sliders=$this->homeService->getSliders();
+        $categories=$this->homeService->getCategories(12);
+        $Brands=$this->homeService->getBrands(12);
+        $newArriavle=$this->homeService->newArriavleProduct(8);
+        $flashProduct=$this->homeService->flashProduct(12);
+        $flashProductTimer=$this->homeService->flashProductTimer(8);
+        return view('website.index',compact('sliders','categories','Brands','newArriavle','flashProduct','flashProductTimer'));
     }
 
     /**

@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers\Website;
+
+use App\Http\Controllers\Controller;
+use App\services\website\ProductService;
+use Illuminate\Http\Request;
+
+class ProductController extends Controller
+{
+        public function __construct(private ProductService $productService){}
+
+    public function show($slug){
+     $product=$this->productService->showProduct($slug);
+     return view('website.show',compact('product'));
+    }
+}
