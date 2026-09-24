@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\website\AboutUsController;
 use App\Http\Controllers\Website\BrandController;
+use App\Http\Controllers\website\Cartcontroller;
 use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\website\FaqController;
 use App\Http\Controllers\Website\HomeController;
@@ -85,6 +86,7 @@ Route::group(
             Route::match(['get', 'post'], 'logout', [LoginController::class, 'logout'])->name('logout');
             Route::resource('profile', ProfileController::class);
             Route::get('wishlist',WishlistController::class)->name('wishlist');
+            Route::get('cart',Cartcontroller::class)->name('cart');
 
         });
     }
