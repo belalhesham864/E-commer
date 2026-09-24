@@ -12,4 +12,7 @@ class ProductReview extends Model
            public function Product(){
         return $this->belongsTo(Product::class);
     }
+           public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

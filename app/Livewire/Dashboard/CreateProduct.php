@@ -46,7 +46,7 @@ public $has_discount=0,$manage_stock=0,$has_variants=0 ;
           'price' => 'required_if:has_variants,0|numeric|min:1',
           'quantity' => 'required_if:has_variants,0|numeric|min:1',
 
-          'discount' => 'required_if:has_discount,1|numeric|min:1|max:100',
+          'discount' => 'required_if:has_discount,1|numeric|min:1',
            'start_discount' => 'required_if:has_discount,1|date|before:end_discount',
            'end_discount' => 'required_if:has_discount,1|date|after:start_discount',
 
@@ -62,6 +62,16 @@ public $has_discount=0,$manage_stock=0,$has_variants=0 ;
                  'images.*' => 'image|max:2048', ];
     }
     public function updated($propertyName){
+
+
+    if(in_array($propertyName,['start_discount','end_discount'])){
+        $this->resetValidation(['start_discount','end_discount']);
+        if ($this->start_discount && $this->end_discount) {
+            $this->validateOnly('start_discount');
+             $this->validateOnly('end_discount');
+             }
+             return;
+    }
         $this->validateOnly($propertyName);
     }
       public function firstStepSubmit()
@@ -94,7 +104,7 @@ public $has_discount=0,$manage_stock=0,$has_variants=0 ;
             }
             }
             if($this->has_discount==1){
-                $data['discount']='required|numeric|min:1|max:100';
+                $data['discount']='required|numeric|min:1';
              $data['start_discount']='required_if:has_discount,1|date|before:end_discount';
             $data['end_discount']='required_if:has_discount,1|date|after:start_discount';
             }

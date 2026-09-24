@@ -330,7 +330,7 @@ wire:model.live="has_variants" id="has_variants" class="form-control border-prim
 
 
     <div class="row">
-
+ @if ( $has_variants==0)
         <div class="col-md-6">
             <div class="form-group">
                 <label for="has_discount">Has Discount</label>
@@ -349,8 +349,8 @@ wire:model.live="has_variants" id="has_variants" class="form-control border-prim
                 @enderror
             </div>
         </div>
-
-        @if ($has_discount == 1)
+@endif
+        @if ($has_discount == 1 && $has_variants==0)
 
             <div class="col-md-6">
                 <div class="form-group">
@@ -375,7 +375,7 @@ wire:model.live="has_variants" id="has_variants" class="form-control border-prim
     </div>
 
 
-    @if ($has_discount == 1)
+    @if ($has_discount == 1 && $has_variants==0)
 
         <div class="row">
 
@@ -385,7 +385,7 @@ wire:model.live="has_variants" id="has_variants" class="form-control border-prim
 
                     <input
                         type="date"
-                        wire:model.live="start_discount"
+                        wire:model.blur="start_discount"
                         id="start_discount"
                         class="form-control border-primary"
                     >
@@ -402,7 +402,7 @@ wire:model.live="has_variants" id="has_variants" class="form-control border-prim
 
                     <input
                         type="date"
-                        wire:model.live="end_discount"
+                        wire:model.blur="end_discount"
                         id="end_discount"
                         class="form-control border-primary"
                     >

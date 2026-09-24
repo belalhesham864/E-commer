@@ -48,6 +48,10 @@ Route::group(
      Route::get('product/show/{slug}',[ProductController::class,'show'])->name('product.show');
      Route::get('page/{slug}', [pageController::class, 'index'])->name('website.page');
      Route::get('product/{type}',[ProductController::class,'getProductByType'])->name('product.by.type');
+     Route::get('{slug}/product',[ProductController::class,'getRelatedProduct'])->name('product.related');
+
+
+        Route::get('shop',[HomeController::class,'showShopPage'])->name('shop');
 
         // ############################# Auth (Guests Only) #######################
         Route::middleware('guest')->group(function () {

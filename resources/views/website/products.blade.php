@@ -4,9 +4,9 @@
 
 @if($products->count()>0)
 
-<section class="product product-sidebar  @if($flash_timer) flash-sale @endif footer-padding">
+<section class="product product-sidebar  {{ ($flash_timer ?? false) ? 'flash-sale' : '' }} footer-padding">
 <div class="container">
-    @if($flash_timer)
+    @if($flash_timer ?? false)
         <div class="section-title">
                     <h5>Flash Sale</h5>
                     <div class="countdown-section">
@@ -183,7 +183,7 @@
 <link rel="stylesheet" href="{{ asset('asset/website/css/pagiation.css') }}">
 @endpush
 @push('js')
-@if($flash_timer)
+@if($flash_timer??false)
 <script src="{{ asset('asset/website/assets/js/count.js') }}"></script>
 @endif
 @endpush

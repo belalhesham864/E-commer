@@ -11,8 +11,10 @@ class ProductController extends Controller
         public function __construct(private ProductService $productService){}
 
     public function show($slug){
-     $product=$this->productService->showProduct($slug);
-     return view('website.show',compact('product'));
+        $product        = $this->productService->showProduct($slug);
+        $relatedProduct = $this->productService->getrelatedProductBySlug($slug, 5);
+        $relatedProduct = $relatedProduct->getCollection()->reject(fn($item) => $item->id === $product->id)->take(4);
+        return view('website.show', compact('product', 'relatedProduct'));
     }
 
     public function getProductByType($type){
@@ -31,6 +33,14 @@ class ProductController extends Controller
         return view('website.products',[
             'products'   =>$products,
             'flash_timer'=>  $type=='Flash-Timer'? true:false,
+        ]);
+    }
+    public function getRelatedProduct($slug){
+        $products=$this->productService->getrelatedProductBySlug($slug);
+
+        return view('website.products',[
+            'products'=>$products,
+            'flash_timer'=>false,
         ]);
     }
 }
