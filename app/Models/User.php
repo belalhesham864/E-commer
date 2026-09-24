@@ -64,6 +64,9 @@ class User extends Authenticatable
      public function orders(){
     return $this->hasMany(Order::class);
    }
+     public function wishlists(){
+    return $this->hasMany(Wishlist::class);
+   }
    public function getStatus(){
     return $this->status==1 ? 'Active' :'InActive';
    }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\website\pageController;
 use App\Http\Controllers\Website\ProductController;
 use App\Http\Controllers\Website\ProfileController;
+use App\Http\Controllers\website\WishlistController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -51,6 +52,7 @@ Route::group(
      Route::get('{slug}/product',[ProductController::class,'getRelatedProduct'])->name('product.related');
 
 
+
         Route::get('shop',[HomeController::class,'showShopPage'])->name('shop');
 
         // ############################# Auth (Guests Only) #######################
@@ -82,6 +84,8 @@ Route::group(
         Route::middleware('auth')->group(function () {
             Route::match(['get', 'post'], 'logout', [LoginController::class, 'logout'])->name('logout');
             Route::resource('profile', ProfileController::class);
+            Route::get('wishlist',WishlistController::class)->name('wishlist');
+
         });
     }
 );
