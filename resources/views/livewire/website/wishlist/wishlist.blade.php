@@ -1,4 +1,4 @@
-<div>
+<div style="display: flex; align-items: center;">
     @if(isset($type) && $type === 'card')
 
                 <a href="javascript:void(0)"

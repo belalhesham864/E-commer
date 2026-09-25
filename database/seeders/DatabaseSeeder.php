@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             SliderSeeder::class,
             PageSeeder::class,
             ProductReviewSeeder::class,
+            CartSeeder::class,
         ]);
     }
 }

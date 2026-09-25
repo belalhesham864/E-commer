@@ -55,7 +55,7 @@ class Product extends Model
     // }
       public function getPriceAttribute($value)
     {
-        return $this->has_variants==0 ? number_format($value,2) : 'Yes Variantes';
+        return $this->has_variants==0 ? $value : 'Yes Variantes';
     }
         public function scopeIsActive($q)
     {
