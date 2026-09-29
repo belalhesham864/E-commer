@@ -8,9 +8,9 @@ class CartService
 {
     public function getCart(){
         $userId=auth('web')->user()->id;
-        $cart=cart::with('cartItems')
+        $cart=cart::with('cartItems.product.images')
         ->where('user_id',$userId)
-        ->get();
+        ->first();
         return $cart;
     }
 }

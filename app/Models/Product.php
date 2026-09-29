@@ -45,6 +45,11 @@ class Product extends Model
     public function isSimple(){
         return !$this->has_variants;
     }
+    public function discountPersantge(){
+            if($this->has_discount && $this->price>0){
+                return round(($this->discount/$this->price)*100,2);
+            }
+    }
       public function getCreatedAtAttribute($value)
     {
         return date('d/m/Y h:m A', strtotime($value));

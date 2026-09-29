@@ -15,9 +15,11 @@
                     <div class="col-md-6">
                         <div class="product-info-img" data-aos="fade-right">
                             <div class="swiper product-top">
+                              @if($product->has_discount)
                                 <div class="product-discount-content" style="position:absolute; top:15px; left:15px; z-index:10;">
-                                    <h4>-50%</h4>
+                                    <h4>{{ $product->discountPersantge() }}%</h4>
                                 </div>
+                              @endif
                                 <div class="swiper-wrapper">
                                     @foreach ($product->images as $img)
                                         <div class="swiper-slide slider-top-img">

@@ -56,26 +56,133 @@
                   </span>
               </div>
 
+              @if ($product->has_variants && !empty($variantAttributes))
+                  <div class="product-variant-attributes" style="margin-top:0.8rem; display:flex; flex-wrap:wrap; gap:0.6rem;">
+                      @foreach ($variantAttributes as $attr)
+                          <span style="display:inline-flex; align-items:center; gap:0.4rem; background:#f5f5f5; border:1px solid #e0e0e0; border-radius:2rem; padding:0.4rem 1.2rem; font-size:1.3rem; color:#444;">
+                              <strong style="color:#AE1C9A;">{{ $attr['name'] }}:</strong>
+                              {{ $attr['value'] }}
+                          </span>
+                      @endforeach
+                  </div>
+              @endif
 
               @if ($product->has_variants && $product->Variants->isNotEmpty())
-
                   <div class="product-size">
                       <p class="size-title">Variants</p>
-                      <select wire:change="changeVariant($event.target.value)"
-                          style="width:100%;padding:1.2rem 2rem;border:1px solid #d5d5d5;border-radius:1.2rem;font-size:1.4rem;color:#232532;background:#fff;cursor:pointer;outline:none;appearance:auto;">
-                          <option value="">-- Select your Variant --</option>
-                          @foreach ($variant as $v)
-                              <option value="{{ $v->id }}">
-                                  @foreach ($v->VarientAttributes as $itemAttr)
-                                      {{ $itemAttr->AttributeValue->attribute->name }}:
-                                      {{ $itemAttr->AttributeValue->value }}
-                                      @if (!$loop->last)
-                                          |
-                                      @endif
-                                  @endforeach
-                              </option>
-                          @endforeach
-                      </select>
+
+                      {{-- Custom Dropdown --}}
+                      <div id="variant-dropdown" style="position:relative; user-select:none;">
+
+                          {{-- Trigger Button --}}
+                          <div id="variant-trigger"
+                              style="
+                                  display:flex; align-items:center; justify-content:space-between;
+                                  width:100%; padding:1.1rem 1.6rem;
+                                  border:2px solid #AE1C9A; border-radius:1.2rem;
+                                  font-size:1.4rem; color:#232532; background:#fff;
+                                  cursor:pointer; box-shadow:0 2px 8px rgba(174,28,154,0.10);
+                                  transition: box-shadow 0.2s;
+                              "
+                              onclick="toggleVariantDropdown()"
+                          >
+                              <span id="variant-selected-label">
+                                  @php $firstV = $variant->firstWhere('id', $variantId) ?? $variant->first(); @endphp
+                                  @if($firstV)
+                                      @foreach($firstV->VarientAttributes as $a)
+                                          {{ $a->AttributeValue->attribute->name }}: {{ $a->AttributeValue->value }}@if(!$loop->last)  |  @endif
+                                      @endforeach
+                                  @endif
+                              </span>
+                              <svg id="variant-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" style="transition:transform 0.2s; flex-shrink:0; margin-left:0.8rem;">
+                                  <path d="M6 9L12 15L18 9" stroke="#AE1C9A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                          </div>
+
+                          {{-- Options List --}}
+                          <div id="variant-options"
+                              style="
+                                  display:none; position:absolute; top:calc(100% + 6px); left:0; right:0;
+                                  background:#fff; border:2px solid #AE1C9A; border-radius:1.2rem;
+                                  box-shadow:0 8px 24px rgba(174,28,154,0.15);
+                                  z-index:999; overflow:hidden;
+                              "
+                          >
+                              @foreach ($variant as $v)
+                                  @php
+                                      $label = $v->VarientAttributes->map(fn($a) =>
+                                          $a->AttributeValue->attribute->name.': '.$a->AttributeValue->value
+                                      )->implode('  |  ');
+                                  @endphp
+                                  <div
+                                      onclick="selectVariant({{ $v->id }}, '{{ addslashes($label) }}')"
+                                      data-variant-id="{{ $v->id }}"
+                                      style="
+                                          padding:1rem 1.6rem; font-size:1.4rem; cursor:pointer;
+                                          color:{{ $v->id == $variantId ? '#fff' : '#232532' }};
+                                          background:{{ $v->id == $variantId ? '#AE1C9A' : '#fff' }};
+                                          transition: background 0.15s, color 0.15s;
+                                      "
+                                      onmouseover="if(this.dataset.selected !== '1'){ this.style.background='rgba(174,28,154,0.10)'; this.style.color='#AE1C9A'; }"
+                                      onmouseout="if(this.dataset.selected !== '1'){ this.style.background=''; this.style.color='#232532'; }"
+                                      data-selected="{{ $v->id == $variantId ? '1' : '0' }}"
+                                  >
+                                      {{ $label }}
+                                  </div>
+                              @endforeach
+                          </div>
+
+                          {{-- Hidden input to sync with Livewire --}}
+                          <input type="hidden" id="variant-hidden-input" value="{{ $variantId }}">
+                      </div>
+
+                      <style>
+                          #variant-trigger:hover { box-shadow: 0 0 0 3px rgba(174,28,154,0.18); }
+                      </style>
+
+                      <script>
+                          function toggleVariantDropdown() {
+                              const opts = document.getElementById('variant-options');
+                              const arrow = document.getElementById('variant-arrow');
+                              const isOpen = opts.style.display === 'block';
+                              opts.style.display = isOpen ? 'none' : 'block';
+                              arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+                          }
+
+                          function selectVariant(id, label) {
+                              // Update label
+                              document.getElementById('variant-selected-label').textContent = label;
+
+                              // Update selected styles on all options
+                              document.querySelectorAll('#variant-options [data-variant-id]').forEach(el => {
+                                  if (parseInt(el.dataset.variantId) === id) {
+                                      el.style.background = '#AE1C9A';
+                                      el.style.color = '#fff';
+                                      el.dataset.selected = '1';
+                                  } else {
+                                      el.style.background = '';
+                                      el.style.color = '#232532';
+                                      el.dataset.selected = '0';
+                                  }
+                              });
+
+                              // Close dropdown
+                              document.getElementById('variant-options').style.display = 'none';
+                              document.getElementById('variant-arrow').style.transform = 'rotate(0deg)';
+
+                              // Dispatch to Livewire
+                              @this.call('changeVariant', id);
+                          }
+
+                          // Close on outside click
+                          document.addEventListener('click', function(e) {
+                              const wrapper = document.getElementById('variant-dropdown');
+                              if (wrapper && !wrapper.contains(e.target)) {
+                                  document.getElementById('variant-options').style.display = 'none';
+                                  document.getElementById('variant-arrow').style.transform = 'rotate(0deg)';
+                              }
+                          });
+                      </script>
                   </div>
               @endif
 
@@ -85,7 +192,7 @@
                       @livewire('website.wishlist', ['product' => $product])
                       @livewire('website.cart.product-count')
                   </div>
-                  @livewire('website.cart.product-cart', ['product' => $product])
+                  @livewire('website.cart.product-cart', ['product' => $product, 'variantId' => $variantId], key('product-cart-'.$product->id))
               </div>
               <hr>
 
@@ -182,27 +289,3 @@
               </div>
           </div>
       </div>
-      @script
-          <script>
-              Livewire.on('success-message', (event) => {
-                  Swal.fire({
-                      position: "top-center",
-                      icon: "success",
-                      title: event[0],
-                      showConfirmButton: true,
-                      timer: 2500
-                  });
-              });
-
-              Livewire.on('error-message', (event) => {
-                  const message = Array.isArray(event) ? event[0] : (typeof event === 'object' && event !== null ? (event.message || event.title || event[0]) : event);
-                  Swal.fire({
-                      position: "top-center",
-                      icon: "error",
-                      title: message,
-                      showConfirmButton: true,
-                      timer: 2500
-                  });
-              });
-          </script>
-      @endscript

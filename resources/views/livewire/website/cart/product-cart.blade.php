@@ -8,4 +8,5 @@
                           </svg>
                       </span>
                       <span>Add to Cart</span>
+              
                   </a>

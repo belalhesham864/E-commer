@@ -77,7 +77,7 @@ class RegisterController extends Controller
 
             $data['image']=$this->imageManger->uploadSingeImage('/',$data['image'],'users');
             }
-        return User::create([
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -88,6 +88,8 @@ class RegisterController extends Controller
             'city_id' => $data['city_id'],
             'password' => Hash::make($data['password']),
         ]);
+        $user->cart()->create();
+        return $user;
     }
         protected function registered()
     {
