@@ -22,5 +22,7 @@ class Country extends Model
      public function users(){
         return $this->hasMany(User::class,'country_id');
      }
-
+     public function scopeIsActive($q){
+    return $q->where('is_active',1);
+     }
 }

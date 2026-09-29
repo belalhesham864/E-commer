@@ -8,6 +8,7 @@ use App\Http\Controllers\website\AboutUsController;
 use App\Http\Controllers\Website\BrandController;
 use App\Http\Controllers\website\Cartcontroller;
 use App\Http\Controllers\Website\CategoryController;
+use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\website\FaqController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\website\pageController;
@@ -87,6 +88,7 @@ Route::group(
             Route::resource('profile', ProfileController::class);
             Route::get('wishlist',WishlistController::class)->name('wishlist');
             Route::get('cart',Cartcontroller::class)->name('cart');
+            Route::get('checkout',[CheckoutController::class,'index'])->name('checkout');
 
         });
     }

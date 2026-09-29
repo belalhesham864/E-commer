@@ -109,7 +109,7 @@
             </div>
             <div class="wishlist-btn cart-btn">
                 <a href="javascript:void(0)" wire:click="clearCart()" class="clean-btn">Clear Cart</a>
-                <a href="checkout.html" class="shop-btn">Proceed to Checkout</a>
+                <a href="{{ route('checkout') }}" class="shop-btn">Proceed to Checkout</a>
             </div>
         </div>
 

@@ -10,7 +10,7 @@ class Governrate extends Model
         use HasTranslations;
     public array $translatable=['name'];
     public $fillable = ['name','country_id','is_active'];
-        
+
 
         public $timestamps = false;
    public function country(){
@@ -24,5 +24,8 @@ class Governrate extends Model
      }
      public function shippingPrice(){
           return $this->hasOne(ShippingGovernrate::class);
+     }
+       public function scopeIsActive($q){
+    return $q->where('is_active',1);
      }
 }

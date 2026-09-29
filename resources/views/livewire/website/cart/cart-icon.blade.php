@@ -87,7 +87,7 @@
 
     <div class="cart-btn">
     <a href="{{ route('cart') }}" class="shop-btn view-btn">View Cart</a>
-<a href="{{ $cartItems->count() > 0 ? route('Home.index') : 'javascript:void(0)' }}"
+<a href="{{ $cartItems->count() > 0 ? route('checkout') : 'javascript:void(0)' }}"
    {{-- wire:click.prevent="checkout" --}}
    class="shop-btn checkout-btn">
     Checkout Now
