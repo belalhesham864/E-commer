@@ -30,6 +30,10 @@ return new class extends Migration
             $table->string('governrate');
             $table->string('city');
             $table->string('street');
+
+
+              $table->string('coupon')->nullable();
+              $table->integer('coupon_discount');
             $table->timestamps();
         });
     }

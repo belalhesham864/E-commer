@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-                        $table->string('slug')->after('name')->unique();
+        Schema::table('orders', function (Blueprint $table) {
+                  $table->decimal('price_after_discount')->after('price')->nullable();
 
         });
     }
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             //
         });
     }

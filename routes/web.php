@@ -89,6 +89,7 @@ Route::group(
             Route::get('wishlist',WishlistController::class)->name('wishlist');
             Route::get('cart',Cartcontroller::class)->name('cart');
             Route::get('checkout',[CheckoutController::class,'index'])->name('checkout');
+            Route::post('checkout',[CheckoutController::class,'checkout'])->name('checkout.post');
 
         });
     }

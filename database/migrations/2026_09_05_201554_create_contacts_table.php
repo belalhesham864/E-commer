@@ -21,8 +21,11 @@ return new class extends Migration
             $table->boolean('is_read')->default(false);
               $table->boolean('replay_status')->default(0);
 
-             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+           $table->boolean('is_start');
 
+           $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+
+           $table->softDeletes();
             $table->timestamps();
         });
     }

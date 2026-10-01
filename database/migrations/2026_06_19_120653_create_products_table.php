@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
+            $table->string('slug')->unique();
+
             $table->text('small_desc');
             $table->longText('desc');
             $table->boolean('status')->default(1);

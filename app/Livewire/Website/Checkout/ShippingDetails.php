@@ -19,6 +19,7 @@ class ShippingDetails extends Component
     public function updatedCountryId($value)
     {
         $this->governrates = Governrate::where('country_id',$value)->isActive()->get();
+        $this->dispatch('update-price',$this->governRateId);
         $this->governRateId = null;
         $this->cityId = null;
         $this->cities = [];
@@ -28,6 +29,9 @@ class ShippingDetails extends Component
     {
         $this->cities = City::where('governrate_id',$value)->get();
         $this->cityId = null;
+        if($value){
+            $this->dispatch('update-price', $this->governRateId);
+        }
     }
     public function render()
     {

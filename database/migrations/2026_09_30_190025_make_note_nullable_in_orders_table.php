@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            $table->boolean('is_start');
-            $table->softDeletes();
+        Schema::table('orders', function (Blueprint $table) {
+                        $table->text('note')->nullable()->change();
+
         });
     }
 
@@ -22,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            //
+        Schema::table('orders', function (Blueprint $table) {
+                        $table->text('note')->nullable(false)->change();
+
         });
     }
 };

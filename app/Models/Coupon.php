@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Coupon extends Model 
+class Coupon extends Model
 {
     use HasFactory;
     protected $table='coupons';
@@ -20,7 +20,8 @@ class Coupon extends Model
     }
     public function scopeValid($q){
         return $q->where('is_active',1)
-        ->where('time_used','<','limit')
+        ->whereColumn('time_used','<','limit')
+        ->where('start_date','<=',now())
         ->where('end_date','>',now());
     }
     public function scopeInValid($q){
@@ -29,7 +30,7 @@ class Coupon extends Model
         ->where('end_date','<',now());
     }
     public function couponIsValid(){
-        return $this->is_active==1 && $this->time_used < $this->limit && $this->end_date >now();
+        return $this->is_active==1 && $this->time_used < $this->limit && $this->end_date >now() && $this->start_date <= now();
     }
 }
 

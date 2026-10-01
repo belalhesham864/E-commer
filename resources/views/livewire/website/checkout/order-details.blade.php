@@ -1,34 +1,34 @@
 <div>
 
     <div class="checkout-wrapper">
-        <a href="#" class="shop-btn">Enter Coupon Code</a>
         <div class="account-section billing-section">
             <h5 class="wrapper-heading">Order Summary</h5>
             <div class="order-summery">
                 <div class="subtotal product-total">
                     <h5 class="wrapper-heading">PRODUCT</h5>
+                    <h5 class="wrapper-heading">Price</h5>
                     <h5 class="wrapper-heading">TOTAL</h5>
                 </div>
                 <hr>
                 <div class="subtotal product-total">
                     <ul class="product-list">
                         @foreach ($cartItems as $item)
-                         <li>
-                            <div class="product-info">
-                                <h5 class="wrapper-heading">{{ $item->product->name }} X{{ $item->quantity }}</h5>
-                                <p class="paragraph">
-                                @if($item->attributes !=null)
-                                    @foreach ($item->attributes as $attr=>$value )
-                                     {{ $attr.":".$value }}
-                                    @endforeach
-                                @endif
-                                </p>
-                            </div>
-                            <div class="price">
-                                <h5 class="wrapper-heading">{{ $item->price }}EGP</h5>
-                            </div>
-                        </li>
-
+                            <li>
+                                <div class="product-info">
+                                    <h5 class="wrapper-heading">{{ $item->product->name }} X{{ $item->quantity }}</h5>
+                                    <p class="paragraph">
+                                        @if ($item->attributes != null)
+                                            @foreach ($item->attributes as $attr => $value)
+                                                {{ $attr . ':' . $value }}
+                                            @endforeach
+                                        @endif
+                                    </p>
+                                </div>
+                                <div class="price">
+                                    <h5 class="wrapper-heading" style="margin-right: 140px">{{ $item->price }}EGP</h5>
+                                    <h5 class="wrapper-heading">{{ $item->quantity * $item->price }}EGP</h5>
+                                </div>
+                            </li>
                         @endforeach
 
                     </ul>
@@ -36,17 +36,16 @@
                 <hr>
                 <div class="subtotal product-total">
                     <h5 class="wrapper-heading">SUBTOTAL</h5>
-                    <h5 class="wrapper-heading">{{ $cartItems->sum(fn($item) => $item->price*$item->quantity) }}EGP</h5>
+                    <h5 class="wrapper-heading">{{ $cartItems->sum(fn($item) => $item->price * $item->quantity) }}EGP</h5>
                 </div>
                 <div class="subtotal product-total">
                     <ul class="product-list">
                         <li>
                             <div class="product-info">
                                 <p class="paragraph">SHIPPING</p>
-                                <h5 class="wrapper-heading">Free Shipping</h5>
                             </div>
                             <div class="price">
-                                <h5 class="wrapper-heading">+$0</h5>
+                                <h5 class="wrapper-heading">+{{ $shippingPrice }}EGP</h5>
                             </div>
                         </li>
                     </ul>
@@ -54,8 +53,14 @@
                 <hr>
                 <div class="subtotal total">
                     <h5 class="wrapper-heading">TOTAL</h5>
-                    <h5 class="wrapper-heading price">$365</h5>
+                    <h5 class="wrapper-heading price">
+                        {{ $cartItems->sum(fn($item) => $item->price * $item->quantity) + $shippingPrice }}EGP</h5>
                 </div>
+                <hr>
+                <div class="coupon-section my-3">
+                    @livewire('website.checkout.coupon')
+                </div>
+                <hr>
                 <div class="subtotal payment-type">
                     <div class="checkbox-item">
                         <input type="radio" id="bank" name="bank">
@@ -82,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="shop-btn">Place Order Now</a>
+         
             </div>
         </div>
     </div>
