@@ -15,6 +15,7 @@ use App\Http\Controllers\website\pageController;
 use App\Http\Controllers\Website\ProductController;
 use App\Http\Controllers\Website\ProfileController;
 use App\Http\Controllers\website\WishlistController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -24,7 +25,7 @@ Route::get('/', function () {
 
 Route::group(
     [
-        'prefix' => LaravelLocalization::setLocale().'/website',
+        'prefix' => LaravelLocalization::setLocale() . '/website',
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ],
     function () {
@@ -48,14 +49,14 @@ Route::group(
             Route::get('', 'index')->name('index');
             Route::get('/{slug}/products', 'getProductByCategory')->name('product');
         });
-     Route::get('product/show/{slug}',[ProductController::class,'show'])->name('product.show');
-     Route::get('page/{slug}', [pageController::class, 'index'])->name('website.page');
-     Route::get('product/{type}',[ProductController::class,'getProductByType'])->name('product.by.type');
-     Route::get('{slug}/product',[ProductController::class,'getRelatedProduct'])->name('product.related');
+        Route::get('product/show/{slug}', [ProductController::class, 'show'])->name('product.show');
+        Route::get('page/{slug}', [pageController::class, 'index'])->name('website.page');
+        Route::get('product/{type}', [ProductController::class, 'getProductByType'])->name('product.by.type');
+        Route::get('{slug}/product', [ProductController::class, 'getRelatedProduct'])->name('product.related');
 
 
 
-        Route::get('shop',[HomeController::class,'showShopPage'])->name('shop');
+        Route::get('shop', [HomeController::class, 'showShopPage'])->name('shop');
 
         // ############################# Auth (Guests Only) #######################
         Route::middleware('guest')->group(function () {
@@ -86,11 +87,114 @@ Route::group(
         Route::middleware('auth')->group(function () {
             Route::match(['get', 'post'], 'logout', [LoginController::class, 'logout'])->name('logout');
             Route::resource('profile', ProfileController::class);
-            Route::get('wishlist',WishlistController::class)->name('wishlist');
-            Route::get('cart',Cartcontroller::class)->name('cart');
-            Route::get('checkout',[CheckoutController::class,'index'])->name('checkout');
-            Route::post('checkout',[CheckoutController::class,'checkout'])->name('checkout.post');
-
+            Route::get('wishlist', WishlistController::class)->name('wishlist');
+            Route::get('cart', Cartcontroller::class)->name('cart');
+            Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout');
+            Route::post('checkout', [CheckoutController::class, 'checkout'])->name('checkout.post');
+            Route::get('checkout/callback',[CheckoutController::class,'callback'])->name('checkout.callback');
+            Route::get('checkout/error',[CheckoutController::class,'error'])->name('checkout.error');
         });
     }
 );
+
+
+
+
+            Route::get('checkout/callback',[CheckoutController::class,'callback'])->name('checkout.callback');
+            Route::get('checkout/error',[CheckoutController::class,'error'])->name('checkout.error');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $postFields = [
+//     //Fill required data
+//     'InvoiceValue'       => $invoiceValue,
+//     'CustomerName'       => 'fname lname',
+//     'NotificationOption' => 'LNK', //'SMS', 'EML', or 'ALL'
+//Fill optional data
+//'DisplayCurrencyIso' => $displayCurrencyIso,
+//'MobileCountryCode'  => $phone[0],
+//'CustomerMobile'     => $phone[1],
+//'CustomerEmail'      => 'email@example.com',
+//'CallBackUrl'        => 'https://example.com/callback.php',
+//'ErrorUrl'           => 'https://example.com/callback.php', //or 'https://example.com/error.php'
+//'Language'           => 'en', //or 'ar'
+//'CustomerReference'  => 'orderId',
+//'CustomerCivilId'    => 'CivilId',
+//'UserDefinedField'   => 'This could be string, number, or array',
+//'ExpiryDate'         => '', //The Invoice expires after 3 days by default. Use 'Y-m-d\TH:i:s' format in the 'Asia/Kuwait' time zone.
+//'CustomerAddress'    => $customerAddress,
+//'InvoiceItems'       => $invoiceItems,
+//'Suppliers'          => $suppliers,
+// ];
+
+
+Route::get('test', function () {
+    $responce = Http::withHeaders(['Authorization' => 'Bearer SK_KWT_vVZlnnAqu8jRByOWaRPNId4ShzEDNt256dvnjebuyzo52dXjAfRx2ixW5umjWSUx'])
+        ->timeout(30)
+        ->withoutVerifying()
+        ->send('POST', 'https://apitest.myfatoorah.com/v2/SendPayment', [
+            'json' => [
+                'InvoiceValue'       => 1000,
+                'CustomerName'       => 'Belal Hesham',
+                'NotificationOption' => 'LNK',
+
+                'DisplayCurrencyIso' => 'EGP',
+                'MobileCountryCode'  => '+20',
+                'CustomerMobile' => '1028673838',
+                'CustomerEmail'      =>  'belalhesham616@gmail.com',
+                'CallBackUrl'        => 'http://127.0.0.1:8000/test/callback',
+                'ErrorUrl'           => 'http://127.0.0.1:8000/test/error',
+                'Language'           => 'en',
+            ],
+        ]);
+    return redirect($responce['Data']['InvoiceURL']);
+});
+
+Route::get('test/callback', function () {
+    $responce = Http::withHeaders(['Authorization' => 'Bearer SK_KWT_vVZlnnAqu8jRByOWaRPNId4ShzEDNt256dvnjebuyzo52dXjAfRx2ixW5umjWSUx'])
+        ->timeout(30)
+        ->withoutVerifying()
+        ->send('POST', 'https://apitest.myfatoorah.com/v2/GetPaymentStatus', [
+            'json' => [
+                "Key" => request()->paymentId,
+                "KeyType" => "paymentId"
+            ],
+        ]);
+        return $responce->json();
+});
+Route::get('test/error', function () {
+    return request();
+});
+
+
+

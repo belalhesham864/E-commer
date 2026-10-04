@@ -21,6 +21,13 @@ return[
     'Home'=>'الرئيسيه',
     'deleteRole'=>'لا يمكنك حذف الصلاحيه لانها مرتبطه ب ادمن',
     'deleteRolesuccess'=>'تم حذف الصلاحيه بنجاح',
-    'admins'=>'الادمن'
+    'admins'=>'الادمن',
+    'orders'=>'الطلبات',
+    'order_details'=>'تفاصيل الطلب',
+    'status'=>'الحالة',
+    'pending'=>'قيد الانتظار',
+    'completed'=>'مكتمل',
+    'delivered'=>'تم التوصيل',
+    'cancelled'=>'ملغي',
 ];
 ?>

@@ -8,6 +8,7 @@ use App\Models\category;
 use App\Models\Contact;
 use App\Models\Coupon;
 use App\Models\Faqs;
+use App\Models\Order;
 use App\Models\page;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
@@ -60,6 +61,11 @@ class ViewServicePorvider extends ServiceProvider
             return Faqs::count();
         });
       }
+      if(!Cache::has('orders_count')){
+          Cache::remember('orders_count',now()->addHour(),function(){
+            return Order::count();
+        });
+      }
       view()->share([
         'categories_count'=>Cache::get('categories_count'),
         'brands_count'=>Cache::get('brands_count'),
@@ -67,6 +73,7 @@ class ViewServicePorvider extends ServiceProvider
         'coupons_count'=>Cache::get('coupons_count'),
         'Faqs_count'=>Cache::get('Faqs_count'),
         'contacts_count'=>Cache::get('contacts_count'),
+        'orders_count'=>Cache::get('orders_count'),
       ]);
        });
        view()->composer('website.*',function(){

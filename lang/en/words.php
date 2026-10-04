@@ -22,6 +22,12 @@ return[
     'deleteRole'=>'You cannot delete the permission because it is linked to the admin.',
     'deleteRolesuccess'=>'Role Deleted Successfuly',
     'admins'=>'admins',
-    
+    'orders'=>'Orders',
+    'order_details'=>'Order Details',
+    'status'=>'Status',
+    'pending'=>'Pending',
+    'completed'=>'Completed',
+    'delivered'=>'Delivered',
+    'cancelled'=>'Cancelled',
 ];
 ?>

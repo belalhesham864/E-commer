@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Http\Controllers\Dashboard\{BrandController,CouponController,RoleController,WelcomeController,CategoryController,ContactController,FaqController,ProdutController,UserController,SettingController,WorldController,AdminController,AttributeController, PagesController};
+use App\Http\Controllers\Dashboard\{BrandController,CouponController,RoleController,WelcomeController,CategoryController,ContactController,FaqController,ProdutController,UserController,SettingController,WorldController,AdminController,AttributeController, OrderController, PagesController};
 use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\{ForgetPasswordController,ResetPasswordController};
 use App\Http\Controllers\Dashboard\sliderController;
@@ -118,6 +118,14 @@ Route::group(
           Route::post('product/status',[ProdutController::class,'changeStatus'])->name('product.status');
 				Route::get('products-all', [ProdutController::class, 'getAll'])->name('products.all');
 				Route::delete('deleteVarient/{id}', [ProdutController::class, 'deleteVarient'])->name('products.deleteVarient');
+			});
+						##############################orders Routes#######################
+			Route::middleware('can:orders')->group(function () {
+				Route::get('orders', [OrderController::class,'index'])->name('orders.index');
+				Route::get('orders/{id}', [OrderController::class,'show'])->name('orders.show');
+				Route::get('orders-all', [OrderController::class, 'getAll'])->name('orders.all');
+          Route::post('orders/status',[OrderController::class,'changeStatus'])->name('order.status');
+          Route::delete('orders/delete/{id}',[OrderController::class,'delete'])->name('order.delete');
 			});
             		##############################User Routes#######################
 	Route::middleware('can:users')->group(function () {

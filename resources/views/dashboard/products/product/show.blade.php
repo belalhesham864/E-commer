@@ -201,7 +201,7 @@
                                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
 
                                                     <img class="d-block w-100 product-main-image"
-                                                        src="{{ asset('uploads/products/' . $image->file_name) }}"
+                                                        src="{{ asset($image->file_name) }}"
                                                         alt="{{ $product->name }}">
 
                                                 </div>
@@ -378,7 +378,7 @@
                             @foreach ($product->images as $key => $image)
                                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
 
-                                    <img class="d-block w-100" src="{{ asset('uploads/products/' . $image->file_name) }}"
+                                    <img class="d-block w-100" src="{{ asset($image->file_name) }}"
                                         alt="First slide">
 
 

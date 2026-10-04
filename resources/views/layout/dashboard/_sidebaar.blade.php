@@ -81,6 +81,18 @@
             @endcan
 
 
+            {{-- Orders --}}
+            @can('orders')
+            <li class="nav-item">
+                <a href="{{ route('dashboard.orders.index') }}">
+                    <i class="la la-shopping-cart"></i>
+                    <span class="menu-title">Orders</span>
+                    <span class="badge badge-info badge-pill float-right mr-2">{{ $orders_count }}</span>
+                </a>
+            </li>
+            @endcan
+
+
             {{-- Contacts --}}
             @can('contact')
             <li class="nav-item">

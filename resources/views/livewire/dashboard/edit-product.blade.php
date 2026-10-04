@@ -508,7 +508,7 @@ wire:model.live="has_variants" id="has_variants" class="form-control border-prim
 
                     <div class="position-relative">
 
-                        <img src="{{ asset('uploads/products').'/'.$image->file_name }}" class="img-thumbnail rounded" style="width: 100%; height: 200px; object-fit: cover;"   >
+                        <img src="{{ asset($image->file_name) }}" class="img-thumbnail rounded" style="width: 100%; height: 200px; object-fit: cover;"   >
 
                         <button  type="button"  wire:click="deleteImage({{ $key }},{{ $image->id }},'{{ $image->file_name }}')"  class="btn btn-danger btn-sm position-absolute"  style="top: 5px; right: 5px;"
                         > <i class="fa fa-trash"></i>
