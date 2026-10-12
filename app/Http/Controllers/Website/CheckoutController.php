@@ -4,11 +4,14 @@ namespace App\Http\Controllers\website;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\website\OrderShippingRequest;
+use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Transaction;
+use App\Notifications\CreateOrderNotification;
 use App\services\website\OrderServices;
 use App\Services\Website\PaymentServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class CheckoutController extends Controller
 {
@@ -74,7 +77,14 @@ class CheckoutController extends Controller
         $order_id=Transaction::where('transaction_id',$responce['Data']['InvoiceId'])->pluck('order_id');
         Order::where('user_id',$user_id)->where('id',$order_id)->update(['status'=>'completed']);
         $cart=auth('web')->user()->cart;
-        $this->orderServices->clearCart($cart);
+        // $this->orderServices->clearCart($cart);
+
+        $admins=Admin::all();
+        $order=Order::where('user_id',$user_id)->where('id',$order_id)->firstOrFail();
+      Notification::send($admins,new CreateOrderNotification($order));
+
+
+
 flash()->success('The order was paid successfully');
         return redirect()->route('Home.index');
     }

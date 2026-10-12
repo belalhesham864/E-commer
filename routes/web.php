@@ -9,6 +9,7 @@ use App\Http\Controllers\Website\BrandController;
 use App\Http\Controllers\website\Cartcontroller;
 use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
+use App\Http\Controllers\website\Contactcontroller;
 use App\Http\Controllers\website\FaqController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\website\pageController;
@@ -93,6 +94,8 @@ Route::group(
             Route::post('checkout', [CheckoutController::class, 'checkout'])->name('checkout.post');
             Route::get('checkout/callback',[CheckoutController::class,'callback'])->name('checkout.callback');
             Route::get('checkout/error',[CheckoutController::class,'error'])->name('checkout.error');
+                Route::get('contact',[Contactcontroller::class,'index'])->name('contact.index');
+
         });
     }
 );

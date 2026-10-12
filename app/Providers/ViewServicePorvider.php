@@ -78,8 +78,18 @@ class ViewServicePorvider extends ServiceProvider
        });
        view()->composer('website.*',function(){
          $pages=page::isActive()->select('id','title','slug')->get();
+         $categories=category::active()->select('id','name','icon','slug')->get();
+    $categoriesChild = category::active()
+    ->whereNull('parent')
+    ->with('children')
+    ->get()
+    ->each(function ($category) {
+        $category->setRelation('children', $category->children->take(4));
+    });
          view()->share([
-            'pages'=>$pages
+            'pages'=>$pages,
+            'categories'=>$categories,
+            'categoriesChild'=>$categoriesChild,
          ]);
        });
        $setting=$this->firstOrCreateSetting();
@@ -109,4 +119,5 @@ class ViewServicePorvider extends ServiceProvider
       });
       return $getSetting;
     }
+
 }

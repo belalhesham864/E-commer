@@ -12,8 +12,21 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
  @yield('body')
- 
+
 @include('layout.dashboard._footer')
- @include('layout.dashboard._scripts')
+
+
+
+
+@include('layout.dashboard._scripts')
+@if (Auth::guard('admin')->check())
+<script>
+    var layout = 'admin';
+    var adminId = {{ auth('admin')->user()->id }};
+    var showOrderRoute = "{{ route('dashboard.orders.show', ':id') }}";
+    var contectindexRoute="{{ route('contact.index') }}";
+</script>
+@vite('resources/js/app.js')
+@endif
 </body>
 </html>

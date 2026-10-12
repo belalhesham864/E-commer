@@ -122,7 +122,7 @@ Route::group(
 						##############################orders Routes#######################
 			Route::middleware('can:orders')->group(function () {
 				Route::get('orders', [OrderController::class,'index'])->name('orders.index');
-				Route::get('orders/{id}', [OrderController::class,'show'])->name('orders.show');
+				Route::get('orders/{id}', [OrderController::class,'show'])->name('orders.show')->middleware('markUnread');
 				Route::get('orders-all', [OrderController::class, 'getAll'])->name('orders.all');
           Route::post('orders/status',[OrderController::class,'changeStatus'])->name('order.status');
           Route::delete('orders/delete/{id}',[OrderController::class,'delete'])->name('order.delete');
@@ -134,7 +134,7 @@ Route::group(
 				Route::get('users-all', [UserController::class, 'getAll'])->name('users.all');
 			});
             Route::middleware('can:contact')->group(function(){
-                Route::get('contacts',[ContactController::class,'index'])->name('contacts.index');
+                Route::get('contacts',[ContactController::class,'index'])->name('contacts.index')->middleware('markUnread');;
             });
             Route::middleware('can:pages')->group(function(){
             	Route::resource('pages', PagesController::class);

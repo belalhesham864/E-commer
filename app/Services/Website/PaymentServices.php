@@ -27,8 +27,11 @@ class PaymentServices
                 'json' => $body
             ]);
         if (!$responce->successful()) {
-            return false;
-        }
+    dd([
+        'status' => $responce->status(),
+        'body' => $responce->body(),
+        'json' => $responce->json(),
+    ]);        }
         return $responce->json();
     }
 

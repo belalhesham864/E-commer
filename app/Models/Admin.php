@@ -60,12 +60,16 @@ class Admin extends Authenticatable
             $permissions = json_decode($role->permession, true);
 
         foreach($permissions as $permession){
-            
+
             if($key==$permession ?? false){
                 return true;
             }
         }
     }
-  
+      public function receivesBroadcastNotificationsOn(): string
+    {
+        return 'admins.'.$this->id;
+    }
+
 }
 

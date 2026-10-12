@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
 {
+    protected $fillable = ['name','phone','email','is_read','is_start','user_id','subject','message'];
     use HasFactory,SoftDeletes;
     public function user()
 {
