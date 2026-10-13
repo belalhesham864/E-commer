@@ -1,65 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Website;
+namespace App\Http\Controllers\website;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view('website.profile.profile');
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function showProfile(){
+           $new_orders_count=auth('web')->user()
+           ->orders()
+           ->where('status','completed')->count();
+           $deliverd_orders_count=auth('web')->user()
+           ->orders()
+           ->where('status','delivered')->count();
+               $user=auth('web')->user()->load(['country','governrate','city']);
+        return view('website.profile.profile',[
+            'user'=>$user,
+            'new_orders_count'=>$new_orders_count,
+            'deliverd_orders_count'=>$deliverd_orders_count
+        ]);
     }
 }

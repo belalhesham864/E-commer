@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ContactUsNotification extends Notification
+class ContactUsNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

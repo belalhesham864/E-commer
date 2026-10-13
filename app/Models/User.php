@@ -27,7 +27,8 @@ class User extends Authenticatable
         'password',
         'governrate_id',
         'country_id',
-        'city_id'
+        'city_id',
+        'image'
     ];
 
     /**
@@ -76,6 +77,10 @@ class User extends Authenticatable
       public function getCreatedAtAttribute($value)
     {
         return date('d/m/Y h:m A', strtotime($value));
+    }
+      public function getImageAttribute($value)
+    {
+        return 'uploads/users/'.$value;
     }
     public function getEmailVerifiedAtAttribute($value){
         return date('d/m/Y h:m A', strtotime($value));

@@ -101,7 +101,7 @@
 
 
                     <div class="header-user">
-                        <a href="{{ route('profile.index') }}">
+                        <a href="{{ route('profile') }}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
                                     height="24" class="fill-current">
@@ -403,7 +403,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="user-profile.html">
+                            <a href="{{ route('profile') }}">
                                 <span class="list-text">User Dashboard</span>
                             </a>
                         </li>

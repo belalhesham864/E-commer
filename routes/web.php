@@ -14,7 +14,8 @@ use App\Http\Controllers\website\FaqController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\website\pageController;
 use App\Http\Controllers\Website\ProductController;
-use App\Http\Controllers\Website\ProfileController;
+use App\Http\Controllers\website\ProfileController;
+use App\Http\Controllers\website\UserDashboardController;
 use App\Http\Controllers\website\WishlistController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -87,14 +88,17 @@ Route::group(
         // ############################# Authenticated Users Only #######################
         Route::middleware('auth')->group(function () {
             Route::match(['get', 'post'], 'logout', [LoginController::class, 'logout'])->name('logout');
-            Route::resource('profile', ProfileController::class);
+            Route::controller(ProfileController::class)->group(function(){
+
+                Route::get('user-profile','showProfile')->name('profile');
+                });
             Route::get('wishlist', WishlistController::class)->name('wishlist');
             Route::get('cart', Cartcontroller::class)->name('cart');
             Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout');
             Route::post('checkout', [CheckoutController::class, 'checkout'])->name('checkout.post');
             Route::get('checkout/callback',[CheckoutController::class,'callback'])->name('checkout.callback');
             Route::get('checkout/error',[CheckoutController::class,'error'])->name('checkout.error');
-                Route::get('contact',[Contactcontroller::class,'index'])->name('contact.index');
+              Route::get('contact',[Contactcontroller::class,'index'])->name('contact.index');
 
         });
     }
