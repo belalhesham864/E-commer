@@ -52,12 +52,12 @@
 
 @livewire('website.dashboard.wishlist')
 
-@livewire('website.dashboard.address')
+@livewire('website.dashboard.address',['user'=>$user])
 
-@livewire('website.dashboard.reiview')
+@livewire('website.dashboard.reiview',['user'=>$user])
 
 {{-- change password --}}
-@livewire('website.dashboard.change-password')
+@livewire('website.dashboard.change-password',['user'=>$user])
 
 
 

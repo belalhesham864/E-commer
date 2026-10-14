@@ -3,7 +3,7 @@
               <span class="wrapper-subtitle">{{ $product->category->name }}</span>
               <h5>{{ $product->name }}
               </h5>
-              <div class="ratings">
+              <div class="ratings" style="cursor: pointer;" onclick="document.getElementById('nav-review-tab')?.click(); document.getElementById('nav-tab')?.scrollIntoView({behavior: 'smooth'});">
                   <span>
                       <svg width="75" height="15" viewBox="0 0 75 15" fill="none"
                           xmlns="http://www.w3.org/2000/svg">

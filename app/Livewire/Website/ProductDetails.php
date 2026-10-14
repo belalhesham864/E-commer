@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Website;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ProductDetails extends Component
@@ -41,6 +42,12 @@ class ProductDetails extends Component
             $this->loadVariantAttributes($selectedVariant);
         }
         $this->dispatch('product-variant-id', id: $id);
+    }
+
+    #[On('review-added')]
+    public function refreshReviews()
+    {
+        $this->product->load('productReviews');
     }
 
     public function render()

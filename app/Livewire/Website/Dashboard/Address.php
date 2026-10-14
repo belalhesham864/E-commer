@@ -7,8 +7,10 @@ use Livewire\Component;
 
 class Address extends Component
 {
-        public $screen='dashboard';
-
+        public $user, $screen='dashboard';
+public function mount($user){
+    $this->user=$user;
+}
   #[On('addressselectScreen')]
     public function updateScreen($screen){
         $this->screen=$screen;
