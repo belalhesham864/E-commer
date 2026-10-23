@@ -12,6 +12,11 @@ class Reiview extends Component
 
     protected $paginationTheme = 'bootstrap';
 
+    public function paginationView()
+    {
+        return 'livewire.website.pagination';
+    }
+
     public $user, $screen = 'dashboard';
     public $editingReviewId = null;
     public $editComment = '';

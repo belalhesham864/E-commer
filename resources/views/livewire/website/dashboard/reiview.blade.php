@@ -3,6 +3,7 @@
         <div class="tab-pane fade show active">
             <div class="dashboard-reviews-section">
 
+                {{-- Reviews Grid --}}
                 <div class="row g-4">
                     @if ($reiviews->count() > 0)
                         @foreach ($reiviews as $reiview)
@@ -82,8 +83,8 @@
                             </div>
                         @endforeach
 
-                         <div class="pagination-wrapper">
-                            {{ $reiviews->links() }}
+                        <div class="col-12">
+                            {{ $reiviews->links('livewire.website.pagination') }}
                         </div>
                     @else
                         <div class="col-12">
@@ -134,7 +135,9 @@
         </div>
     @endif
 
-   <link rel="stylesheet" href="{{ asset('asset/website/css/reiview.css') }}">
+    {{-- Exact CSS matching category products page --}}
+    <link rel="stylesheet" href="{{ asset('asset/website/css/pagiation.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/website/css/reiview.css') }}">
 </div>
 
 @script

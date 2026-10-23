@@ -45,7 +45,7 @@
 
 {{-- orders --}}
 
-@livewire('website.dashboard.orders')
+@livewire('website.dashboard.orders',['user'=>$user])
 
 
 {{-- wishlist --}}

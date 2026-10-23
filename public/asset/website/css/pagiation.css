@@ -39,6 +39,8 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
         transition: all 0.25s ease-in-out;
         text-decoration: none;
+        cursor: pointer;
+        outline: none;
     }
 
     .pagination-wrapper .pagination .page-item .page-link:hover {

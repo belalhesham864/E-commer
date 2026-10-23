@@ -69,4 +69,8 @@ class HomeController extends Controller
     {
         //
     }
+    public function showShopPage()
+    {
+        return view('website.dashboard.shop');
+    }
 }

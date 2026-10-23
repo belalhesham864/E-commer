@@ -314,7 +314,7 @@
                             </a>
                         </li>
                         <li class="mega-menu">
-                            <a href="product-sidebar.html">
+                            <a href="{{ route('shop') }}">
                                 <span class="list-text">Shop</span>
                                 <span>
                                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"

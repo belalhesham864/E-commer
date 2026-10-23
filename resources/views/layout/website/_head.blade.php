@@ -16,4 +16,5 @@
 <link rel="stylesheet" href="{{ asset('asset/website') }}/css/aos-3.0.0.css">
 
 <link rel="stylesheet" href="{{ asset('asset/website') }}/css/style.css">
+@livewireStyles
 @stack('css')
